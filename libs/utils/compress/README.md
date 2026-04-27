@@ -1,13 +1,13 @@
 # compress
 
-Browser-side image compression. Resizes a `File` (or `Blob`) and quality-steps
-JPEG output until the result is at or below a target byte budget. Wraps
-[pica](https://github.com/nodeca/pica) for the resize.
+Browser-side image compression. Resizes a `File` (or `Blob`) via native
+`canvas.drawImage` and quality-steps JPEG output until the result is at
+or below a target byte budget. No dependencies.
 
 ## Usage
 
 ```js
-import { compressImage } from 'https://cdn.jsdelivr.net/gh/holmhq-admin/cdn@master/libs/utils/compress/v-0.0.1/compress.min.mjs'
+import { compressImage } from 'https://cdn.jsdelivr.net/gh/holmhq-admin/cdn@master/libs/utils/compress/v-0.0.2/compress.min.mjs'
 
 const blob = await compressImage(file, { maxBytes: 250_000, maxDim: 1536 })
 formData.append('file', blob, 'upload.jpg')
@@ -31,8 +31,9 @@ blob is returned anyway (best effort, never throws on size).
 
 ## Notes
 
-- Pica internally uses Web Workers via `blob:` URLs. If the host page's
-  CSP blocks `worker-src blob:`, pica auto-falls back to main-thread JS
-  resize (slower, still correct).
-- Pica is fetched at runtime from `cdn.jsdelivr.net/npm/pica@9/+esm`. The
-  consuming app's CSP must allow `cdn.jsdelivr.net`.
+- Uses `imageSmoothingQuality: 'high'` for the downscale. Quality is
+  slightly below pica's lanczos but visually fine for upload-budget
+  compression and works under fingerprinting protection (Brave, Firefox
+  strict) which blocks the `getImageData` calls pica relies on.
+- v-0.0.1 used pica; dropped in v-0.0.2 because of the fingerprinting
+  block plus the dependency cost wasn't justified for this use case.
