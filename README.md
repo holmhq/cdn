@@ -2,8 +2,8 @@
 
 First-party browser libraries for holm-apps, served via jsDelivr and Vercel.
 
-- **jsDelivr**: `https://cdn.jsdelivr.net/gh/holmhq-admin/cdn@<ref>/libs/...`
-- **Source repo**: <https://github.com/holmhq-admin/cdn>
+- **jsDelivr**: `https://cdn.jsdelivr.net/gh/holmhq/cdn@<ref>/libs/...`
+- **Source repo**: <https://github.com/holmhq/cdn>
 
 ## What's here
 
@@ -31,11 +31,11 @@ Pin to a specific version in production:
 ```html
 <script
   type="module"
-  src="https://cdn.jsdelivr.net/gh/holmhq-admin/cdn@master/libs/ui/feed-stars/v-0.0.2/feed-stars.min.mjs"
+  src="https://cdn.jsdelivr.net/gh/holmhq/cdn@main/libs/ui/feed-stars/v-0.0.2/feed-stars.min.mjs"
 ></script>
 ```
 
-For commit-immutable caching, replace `@master` with a commit SHA.
+For commit-immutable caching, replace `@main` with a commit SHA.
 
 ## Publishing
 

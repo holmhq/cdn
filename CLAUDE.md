@@ -3,8 +3,8 @@
 Single home for first-party JS libs we serve to our holm-apps. Consumers
 load these via jsDelivr (the GitHub mirror) or Vercel.
 
-- **GitHub**: `holmhq-admin/cdn` (public)
-- **jsDelivr**: `https://cdn.jsdelivr.net/gh/holmhq-admin/cdn@<ref>/<path>`
+- **GitHub**: `holmhq/cdn` (public)
+- **jsDelivr**: `https://cdn.jsdelivr.net/gh/holmhq/cdn@<ref>/<path>`
 
 ## Mission
 
@@ -60,11 +60,11 @@ works for now. Add a category only when 5+ libs naturally share one.
 
 ```
 # Production (pinned, immutable, cached forever)
-https://cdn.jsdelivr.net/gh/holmhq-admin/cdn@<commit-sha>/libs/ui/feed-stars/v-0.0.2/feed-stars.min.mjs
+https://cdn.jsdelivr.net/gh/holmhq/cdn@<commit-sha>/libs/ui/feed-stars/v-0.0.2/feed-stars.min.mjs
 
 # Branch ref (12h jsDelivr cache — fine for dev)
-https://cdn.jsdelivr.net/gh/holmhq-admin/cdn@master/libs/ui/feed-stars/v-0.0.2/feed-stars.min.mjs
+https://cdn.jsdelivr.net/gh/holmhq/cdn@main/libs/ui/feed-stars/v-0.0.2/feed-stars.min.mjs
 ```
 
-Always include `v-X.Y.Z/` in the path, even when using `@master`. The
+Always include `v-X.Y.Z/` in the path, even when using `@main`. The
 version-folder is what guarantees no drift across releases.

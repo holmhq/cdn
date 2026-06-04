@@ -13,7 +13,7 @@ Adapted from Aaron Iker's [Stars rating animation](https://codepen.io/aaroniker/
 Drop the module in (works directly from a CDN):
 
 ```html
-<script type="module" src="https://cdn.toolbomber.com/libs/feed-stars/v-latest/feed-stars.min.mjs"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/holmhq/cdn@main/libs/ui/feed-stars/v-0.0.2/feed-stars.min.mjs"></script>
 
 <feed-stars value="3"></feed-stars>
 
@@ -24,7 +24,8 @@ Drop the module in (works directly from a CDN):
 </script>
 ```
 
-Pin to a specific version with `v-0.0.1` instead of `v-latest`.
+Pin production consumers to a `v-X.Y.Z` folder. For commit-immutable caching,
+replace `@main` with a commit SHA.
 
 Or as an ES import in a bundler:
 
@@ -86,18 +87,14 @@ node build.js              # emit dist/feed-stars{,.min}.mjs
 python3 -m http.server 8090   # then open example.html
 ```
 
-## Publish to cdn.toolbomber.com
+## Publish
 
-The cdn repo (`~/Projects/cdn`) uses one folder per version: `libs/<name>/v-X.Y.Z/`,
-with a `v-latest` symlink pointing at the newest version.
+The cdn repo (`~/Projects/holmhq/cdn`) uses one folder per version:
+`libs/ui/feed-stars/v-X.Y.Z/`, with a `v-latest` symlink pointing at the newest
+version for dev/one-off usage only.
 
 ```sh
-node build.js
-VER=$(node -p "require('./package.json').version")
-DEST=~/Projects/cdn/libs/feed-stars/v-$VER
-mkdir -p "$DEST"
-cp dist/feed-stars.mjs dist/feed-stars.min.mjs "$DEST/"
-(cd ~/Projects/cdn/libs/feed-stars && rm -f v-latest && ln -s "v-$VER" v-latest)
-(cd ~/Projects/cdn && git add libs/feed-stars && \
-  git commit -m "Add feed-stars v$VER" && git push)
+cd ~/Projects/holmhq/cdn
+scripts/publish.sh ui feed-stars 0.0.3
+git push
 ```
