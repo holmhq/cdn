@@ -1,0 +1,18 @@
+{
+  "name": "mood-reactions",
+  "version": "0.0.1",
+  "description": "Animated 1-5 reaction picker as a vanilla custom element. Shadow DOM, keyboard support, form participation, and CSS-variable theming.",
+  "type": "module",
+  "main": "src/mood-reactions.js",
+  "module": "src/mood-reactions.js",
+  "files": ["src", "dist"],
+  "scripts": {
+    "build": "node build.js",
+    "serve": "python3 -m http.server 8090"
+  },
+  "keywords": ["reactions", "feedback", "rating", "custom-element", "web-component"],
+  "license": "MIT",
+  "devDependencies": {
+    "terser": "^5.31.0"
+  }
+}

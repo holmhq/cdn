@@ -16,9 +16,13 @@ packages (pica, preact, etc.) are imported directly from their own CDNs
 ```
 libs/
 └── ui/                       # UI components, widgets, animations
-    └── feed-stars/           # 5-star rating custom element
+    ├── feed-stars/           # 5-star rating custom element
+    ├── mood-reactions/       # animated reaction picker
+    ├── pulse-faces/          # animated sentiment faces
+    ├── flow-globe/           # geospatial flow map custom element
+    └── spin-maze/            # iframe-isolated rotating maze game
         ├── src/  build.js  package.json  README.md
-        ├── v-0.0.1/  v-0.0.2/  v-latest → v-0.0.2
+        ├── v-0.0.1/  v-latest → v-0.0.1
 ```
 
 Each lib's source, build script, and published versions are co-located.
@@ -36,6 +40,11 @@ Pin to a specific version in production:
 ```
 
 For commit-immutable caching, replace `@main` with a commit SHA.
+
+## Examples
+
+- `examples/codepen-showcase/` demonstrates the CodePen conversions with
+  themed variations and custom data/levels.
 
 ## Publishing
 

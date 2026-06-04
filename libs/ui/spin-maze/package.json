@@ -1,0 +1,18 @@
+{
+  "name": "spin-maze",
+  "version": "0.0.1",
+  "description": "Rotating maze puzzle game packaged as an iframe-isolated vanilla custom element with configurable levels, themes, and completion events.",
+  "type": "module",
+  "main": "src/spin-maze.js",
+  "module": "src/spin-maze.js",
+  "files": ["src", "dist"],
+  "scripts": {
+    "build": "node build.js",
+    "serve": "python3 -m http.server 8090"
+  },
+  "keywords": ["game", "puzzle", "maze", "custom-element", "web-component"],
+  "license": "MIT",
+  "devDependencies": {
+    "terser": "^5.31.0"
+  }
+}

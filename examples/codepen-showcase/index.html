@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CodePen → CDN showcase</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #080b12;
+      color: #eef2ff;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    main { width: min(1180px, calc(100vw - 32px)); margin: 0 auto; padding: 48px 0 72px; }
+    header { margin-bottom: 32px; }
+    h1 { font-size: clamp(2rem, 6vw, 4rem); line-height: 0.95; margin: 0 0 12px; letter-spacing: -0.06em; }
+    h2 { margin: 0 0 16px; font-size: 1.1rem; letter-spacing: -0.02em; }
+    p { color: #a5b4fc; line-height: 1.6; margin: 0; }
+    code { color: #f0abfc; }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
+    .card {
+      background: linear-gradient(145deg, rgba(255,255,255,0.105), rgba(255,255,255,0.035));
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px;
+      box-shadow: 0 24px 90px rgba(0,0,0,0.28);
+      padding: 22px;
+    }
+    .span-4 { grid-column: span 4; }
+    .span-6 { grid-column: span 6; }
+    .span-8 { grid-column: span 8; }
+    .span-12 { grid-column: span 12; }
+    .demo { display: grid; gap: 18px; align-content: start; }
+    .stage {
+      align-items: center;
+      background: rgba(15,23,42,0.74);
+      border-radius: 18px;
+      display: grid;
+      justify-items: center;
+      min-height: 132px;
+      padding: 22px;
+    }
+    .stage.light { background: #fff7ed; color: #7c2d12; }
+    .stage.mint { background: linear-gradient(135deg, #ecfeff, #ecfdf5); color: #0f172a; }
+    .readout { color: #c4b5fd; font-size: 0.9rem; min-height: 1.4em; }
+
+    mood-reactions.brand {
+      --mood-reactions-active: #34d399;
+      --mood-reactions-active-shadow: #059669;
+      --mood-reactions-active-mouth: #7f1d1d;
+      --mood-reactions-normal: #312e81;
+      --mood-reactions-hover: #4338ca;
+      --mood-reactions-focus: #f0abfc;
+    }
+    pulse-faces.tiny {
+      --pulse-faces-size: 48px;
+      --pulse-faces-gap: 8px;
+      --pulse-faces-ink: #111827;
+      --pulse-faces-sad: #fb7185;
+      --pulse-faces-neutral: #facc15;
+      --pulse-faces-fine: #38bdf8;
+      --pulse-faces-happy: #34d399;
+    }
+    flow-globe.compact {
+      --flow-globe-height: 410px;
+      --flow-globe-radius: 18px;
+      --flow-globe-shadow: none;
+    }
+    spin-maze.compact {
+      --spin-maze-height: 540px;
+      --spin-maze-radius: 18px;
+      --spin-maze-shadow: none;
+    }
+    @media (max-width: 860px) { .span-4, .span-6, .span-8 { grid-column: span 12; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>CodePen sketches, now reusable CDN packages.</h1>
+      <p>Every panel imports immutable <code>v-0.0.1</code> modules from <code>libs/ui/*</code>, like <code>feed-stars</code>.</p>
+    </header>
+
+    <section class="grid">
+      <article class="card span-6 demo">
+        <h2><code>mood-reactions</code> — feedback picker</h2>
+        <div class="stage">
+          <mood-reactions id="mood-default" labels clearable value="4"></mood-reactions>
+          <div class="readout" id="mood-readout">Selected: 4</div>
+        </div>
+        <div class="stage light">
+          <mood-reactions class="brand" labels label-position="top" size="52" gap="14" items='[
+            {"face":"sad","value":"bug","label":"Bug","active":"#fb7185"},
+            {"face":"ok","value":"meh","label":"Meh","active":"#facc15"},
+            {"face":"good","value":"nice","label":"Nice","active":"#60a5fa"},
+            {"face":"happy","value":"ship","label":"Ship","active":"#34d399"}
+          ]'></mood-reactions>
+        </div>
+      </article>
+
+      <article class="card span-6 demo">
+        <h2><code>pulse-faces</code> — ambient sentiment</h2>
+        <div class="stage mint">
+          <pulse-faces labels size="86"></pulse-faces>
+        </div>
+        <div class="stage">
+          <pulse-faces id="pulse-picker" class="tiny" selectable labels value="fine" faces="sad:blocked:Blocked,neutral:waiting:Waiting,fine:active:Active,happy:done:Done"></pulse-faces>
+          <div class="readout" id="pulse-readout">Status: active</div>
+        </div>
+      </article>
+
+      <article class="card span-12 demo">
+        <h2><code>flow-globe</code> — themed geospatial flows</h2>
+        <flow-globe class="compact" theme="ocean" title="Design System Adoption" subtitle="Example imports by region" value-suffix="imports" producers="US,IN" hubs="DE,SG" consumers="GB,FR,JP,AU" data='[
+          {"sourceId":"US","targetId":"DE","value":120},
+          {"sourceId":"IN","targetId":"SG","value":90},
+          {"sourceId":"DE","targetId":"GB","value":70},
+          {"sourceId":"DE","targetId":"FR","value":55},
+          {"sourceId":"SG","targetId":"JP","value":50},
+          {"sourceId":"SG","targetId":"AU","value":40}
+        ]' country-names='{"SG":"Singapore","AU":"Australia"}'></flow-globe>
+      </article>
+
+      <article class="card span-12 demo">
+        <h2><code>spin-maze</code> — embeddable themed puzzle</h2>
+        <spin-maze class="compact" id="maze" theme="night" level="intro-fixed1" show-levels="true" storage-key="codepen-showcase"></spin-maze>
+        <div class="readout" id="maze-readout">Complete a level to see the event.</div>
+      </article>
+    </section>
+  </main>
+
+  <script type="module" src="../../libs/ui/mood-reactions/v-0.0.1/mood-reactions.min.mjs"></script>
+  <script type="module" src="../../libs/ui/pulse-faces/v-0.0.1/pulse-faces.min.mjs"></script>
+  <script type="module" src="../../libs/ui/flow-globe/v-0.0.1/flow-globe.min.mjs"></script>
+  <script type="module" src="../../libs/ui/spin-maze/v-0.0.1/spin-maze.min.mjs"></script>
+  <script type="module">
+    document.querySelector('#mood-default').addEventListener('change', (event) => {
+      document.querySelector('#mood-readout').textContent = `Selected: ${event.detail.value || 'none'}`;
+    });
+    document.querySelector('#pulse-picker').addEventListener('change', (event) => {
+      document.querySelector('#pulse-readout').textContent = `Status: ${event.detail.value}`;
+    });
+    document.querySelector('#maze').addEventListener('complete', (event) => {
+      document.querySelector('#maze-readout').textContent = `Completed ${event.detail.level}`;
+    });
+  </script>
+</body>
+</html>
