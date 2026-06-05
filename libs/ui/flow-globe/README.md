@@ -1,20 +1,28 @@
 # flow-globe
 
-Configurable animated geospatial flow map as a vanilla custom element. Adapted
-from amCharts' [Global Coffee Supply Chain](https://codepen.io/amcharts/pen/OPRwxBd)
-CodePen into a reusable `<flow-globe>` component.
+First-party animated geospatial flow visualization as a vanilla custom element.
+A dependency-free `<flow-globe>` that renders country-to-country flows as glowing
+great-circle arcs with travelling particles — on a rotating 3D wireframe globe or
+a flat equirectangular map.
 
-- Lazy-loads amCharts as ESM from `unpkg.com` by default, with a fallback to `cdn.amcharts.com`; does **not** mirror it.
-- Ships a coffee-supply demo dataset but accepts custom Sankey flow data.
-- Globe or map projection, projection toggle, zoom controls, moving bullets.
-- Built-in `coffee`, `ocean`, `ember`, and `slate` themes plus CSS variables.
+- **No third-party runtime dependency.** Pure canvas 2D plus a compact built-in
+  table of country centroids. No charting library, no map-geodata download.
+- Accepts custom flow data; ships a small demo dataset.
+- Globe (orthographic, auto-rotating, drag-to-spin) or flat map projection, with
+  an in-component Globe/Map toggle.
+- Source / hub / destination nodes are color-coded and sized by total flow.
+- Built-in `ocean`, `coffee`, `ember`, and `slate` themes plus CSS variables.
+
+> **v0.1.0 is a full rewrite.** The earlier `v-0.0.x` builds wrapped amCharts 5
+> and lazy-loaded it from a CDN. v0.1.0 drops that dependency entirely. The public
+> attribute surface is unchanged; `auto-load`, `bullets`, and `data-url` are gone.
 
 ## Use
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/holmhq/cdn@main/libs/ui/flow-globe/v-0.0.2/flow-globe.min.mjs"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/holmhq/cdn@main/libs/ui/flow-globe/v-0.1.0/flow-globe.min.mjs"></script>
 
-<flow-globe theme="coffee" height="560"></flow-globe>
+<flow-globe theme="ocean" height="520"></flow-globe>
 ```
 
 Custom data:
@@ -24,7 +32,6 @@ Custom data:
   title="Design System Adoption"
   subtitle="Component imports by region"
   theme="ocean"
-  value-suffix="imports"
   producers="US,IN"
   hubs="DE,SG"
   consumers="GB,FR,JP,AU"
@@ -32,7 +39,6 @@ Custom data:
     {"sourceId":"US","targetId":"DE","value":120},
     {"sourceId":"IN","targetId":"SG","value":90},
     {"sourceId":"DE","targetId":"GB","value":70},
-    {"sourceId":"DE","targetId":"FR","value":55},
     {"sourceId":"SG","targetId":"JP","value":50},
     {"sourceId":"SG","targetId":"AU","value":40}
   ]'
@@ -47,71 +53,56 @@ replace `@main` with a commit SHA.
 
 ### Attributes
 
-- `data` — JSON array of `{ sourceId, targetId, value }` flows.
-- `data-url` — fetch JSON flow data from a URL.
+- `data` — JSON array of `{ sourceId, targetId, value }` flows (ISO-3166 alpha-2 codes).
 - `country-names` — JSON object mapping country IDs to display names.
 - `producers`, `hubs`, `consumers` — comma-separated country IDs for coloring.
-  If omitted, groups are inferred from source/target positions.
-- `title`, `subtitle`, `value-suffix` — chart labels and tooltip units.
-- `theme` — `coffee` (default), `ocean`, `ember`, or `slate`.
-- `height` — chart height (`560`, `70vh`, etc.).
+  If omitted, roles are inferred from source/target positions in the flow graph.
+- `title`, `subtitle`, `value-suffix` — labels.
+- `theme` — `ocean` (default), `coffee`, `ember`, or `slate`.
+- `height` — wrapper height (`520`, `70vh`, etc.).
 - `projection` — `globe` (default) or `map`.
-- `auto-rotate="false"` — disable globe rotation.
-- `controls="false"` — hide Globe/Map switch.
-- `bullets="false"` — hide animated flow bullets.
-- `auto-load="false"` — do not load amCharts; use already-present globals.
+- `auto-rotate="false"` — disable globe rotation (drag still works).
+- `controls="false"` — hide the Globe/Map switch.
+- `legend="false"` — hide the role legend.
+
+Unknown country codes are skipped (warned once); supply more centroids by editing
+`COUNTRY_CENTROIDS` if you need codes outside the built-in table.
 
 ### Properties + methods
 
 - `el.data` — get/set flow array.
 - `el.countryNames` — get/set country-name map.
-- `el.setData(flows)` — replace flows and refresh.
-- `el.refresh()` — rebuild chart.
-- `el.disposeChart()` — dispose the amCharts root.
+- `el.setData(flows)` — replace flows.
 - `el.configure(options)` — apply options programmatically.
 
 ## Theming
 
-Built-in themes can be overridden with CSS variables:
+Built-in themes can be overridden per instance with CSS variables:
 
 | Prop | Purpose |
 | --- | --- |
 | `--flow-globe-height` | wrapper height |
 | `--flow-globe-radius` | wrapper border radius |
 | `--flow-globe-shadow` | wrapper shadow |
-| `--flow-globe-background` | chart background |
-| `--flow-globe-water` | globe/map water |
-| `--flow-globe-land` | default country fill |
-| `--flow-globe-stroke` | country border |
-| `--flow-globe-graticule` | grid lines |
-| `--flow-globe-flow` | Sankey ribbons |
-| `--flow-globe-node` | flow nodes |
-| `--flow-globe-node-stroke` | flow node border |
-| `--flow-globe-producer` | inferred/explicit source countries |
-| `--flow-globe-hub` | intermediate countries |
-| `--flow-globe-consumer` | terminal countries |
-| `--flow-globe-title` | title text |
-| `--flow-globe-subtitle` | subtitle text |
-| `--flow-globe-bullet` | moving bullet fill |
-| `--flow-globe-bullet-stroke` | moving bullet stroke |
+| `--flow-globe-sphere1` / `--flow-globe-sphere2` | globe gradient (lit → dark) |
+| `--flow-globe-halo` | globe rim glow |
+| `--flow-globe-graticule` | lat/long grid lines |
+| `--flow-globe-arc` / `--flow-globe-arc-hot` | flow arc + particle glow |
+| `--flow-globe-particle` | travelling particle fill |
+| `--flow-globe-producer` | source-country nodes |
+| `--flow-globe-hub` | intermediate-country nodes |
+| `--flow-globe-consumer` | destination-country nodes |
+| `--flow-globe-title` / `--flow-globe-subtitle` | title + subtitle text |
+| `--flow-globe-label` | node + legend label text |
 
 ```css
 flow-globe.brand {
   --flow-globe-height: 420px;
-  --flow-globe-background: #0f172a;
-  --flow-globe-flow: #f472b6;
-  --flow-globe-node: #f8fafc;
+  --flow-globe-arc: #f472b6;
+  --flow-globe-halo: #f472b6;
   --flow-globe-title: #ffffff;
 }
 ```
-
-## Dependency note
-
-This component depends on amCharts 5 (`am5`, `am5map`,
-`am5geodata_worldLow`, `am5themes_Animated`). By default it dynamically imports
-amCharts ESM from `unpkg.com` so it works under Holm's standard CSP. If your app
-has its own loading policy, expose compatible globals first and set
-`auto-load="false"`.
 
 ## Dev
 
@@ -125,6 +116,6 @@ python3 -m http.server 8090
 
 ```sh
 cd ~/Projects/holmhq/cdn
-scripts/publish.sh ui flow-globe 0.0.3
+scripts/publish.sh ui flow-globe 0.1.1
 git push
 ```

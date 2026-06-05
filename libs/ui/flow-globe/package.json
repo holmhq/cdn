@@ -1,7 +1,7 @@
 {
   "name": "flow-globe",
-  "version": "0.0.2",
-  "description": "Configurable animated geospatial flow map custom element. Lazy-loads amCharts, supports themed globe/map projections and custom Sankey flow data.",
+  "version": "0.1.0",
+  "description": "First-party animated geospatial flow visualization custom element. Dependency-free canvas globe/map with great-circle arc flows, particles, theming, and drag-to-rotate.",
   "type": "module",
   "main": "src/flow-globe.js",
   "module": "src/flow-globe.js",
@@ -10,7 +10,7 @@
     "build": "node build.js",
     "serve": "python3 -m http.server 8090"
   },
-  "keywords": ["map", "globe", "sankey", "flows", "custom-element", "web-component"],
+  "keywords": ["map", "globe", "flows", "arcs", "geospatial", "canvas", "custom-element", "web-component"],
   "license": "MIT",
   "devDependencies": {
     "terser": "^5.31.0"
