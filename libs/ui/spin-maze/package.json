@@ -1,6 +1,6 @@
 {
   "name": "spin-maze",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Rotating maze puzzle game packaged as an iframe-isolated vanilla custom element with configurable levels, themes, and completion events.",
   "type": "module",
   "main": "src/spin-maze.js",
