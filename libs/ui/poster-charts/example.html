@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>poster-charts · examples</title>
+  <style>
+    body {
+      margin: 0; padding: 28px; background: #FAF5EA; color: #15211B;
+      font-family: ui-sans-serif, -apple-system, "Segoe UI", Roboto, system-ui, sans-serif;
+    }
+    h1 { font-size: 1.4rem; letter-spacing: -0.02em; }
+    h2 { font-size: .72rem; text-transform: uppercase; letter-spacing: .09em; color: #5A6B61; margin: 28px 0 10px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 18px; max-width: 1040px; }
+    poster-chart { width: 100%; }
+    .dark { background: #0c111c; padding: 18px; border-radius: 20px; }
+  </style>
+  <script type="module" src="./dist/poster-charts.mjs"></script>
+</head>
+<body>
+  <h1>poster-charts — bold data-poster SVG charts</h1>
+
+  <h2>stat · gauge</h2>
+  <div class="grid">
+    <poster-chart type="stat" label="Inherited arrears" accent="#E24536" source="Table 2.7"
+      data='{"prefix":"₹","value":48733,"suffix":" cr","sub":"Inherited arrears stock","context":"as on 31 Mar 2026"}'></poster-chart>
+    <poster-chart type="gauge" label="Liabilities vs GSDP" accent="#0F5132" source="Table 1.1"
+      data='{"value":35.5,"unit":"%","label":"of GSDP"}'></poster-chart>
+    <poster-chart type="gauge" label="Plan exp realization" accent="#F2A73B" source="Table 3.3"
+      data='{"value":108,"max":100,"unit":"%","label":"of BE","target":100}'></poster-chart>
+  </div>
+
+  <h2>bars (BE vs Actual + target) · capacity</h2>
+  <div class="grid">
+    <poster-chart type="bars" label="Estimates keep missing" accent="#F2A73B" source="Table 3.1"
+      data='{"unit":"%","max":4.4,"legend":[{"label":"BE"},{"label":"Actual"}],"groups":[
+        {"label":"Rev deficit","bars":[{"label":"BE","value":1.90},{"label":"Act","value":2.58}]},
+        {"label":"Fis deficit","bars":[{"label":"BE","value":3.16},{"label":"Act","value":3.78}]}]}'></poster-chart>
+    <poster-chart type="capacity" label="Capacity expansion cited" accent="#1FA463" source="Ch 7 Part A"
+      data='{"unit":" MW","items":[{"label":"Solar","value":6000},{"label":"Pumped hydro","value":8000}]}'></poster-chart>
+  </div>
+
+  <h2>slope (declines) · stacked (funnel)</h2>
+  <div class="grid">
+    <poster-chart type="slope" label="What gets squeezed" accent="#E24536" source="Tables 6.2/6.3/6.5"
+      data='{"unit":"%","fromLabel":"2017-18","toLabel":"2025-26","lines":[
+        {"label":"Plan share","from":23.18,"to":17.55},
+        {"label":"Social services","from":53.78,"to":30.68},
+        {"label":"SC/ST/OBC","from":9.24,"to":3.85}]}'></poster-chart>
+    <poster-chart type="stacked" label="₹100 of revenue" accent="#0F5132" source="Table 1.1"
+      caption="77.6% of revenue is already committed — only 22.4 is left for development."
+      data='{"unit":"","segments":[{"label":"Committed (non-interest)","value":56.7},{"label":"Interest","value":20.9},{"label":"Left for development","value":22.4,"color":"#1FA463"}]}'></poster-chart>
+  </div>
+
+  <h2>heatstrip (12-month treasury) · donut (concentration)</h2>
+  <div class="grid">
+    <poster-chart type="heatstrip" label="Treasury closed negative 10 of 12 months" accent="#E24536" source="Table 2.2"
+      data='{"columns":12,"legend":[{"state":"neg","label":"Negative close","color":"#E24536"},{"state":"pos","label":"Positive","color":"#1FA463"}],
+      "cells":[{"state":"neg","label":"A"},{"state":"neg","label":"M"},{"state":"neg","label":"J"},{"state":"neg","label":"J"},{"state":"pos","label":"A"},{"state":"neg","label":"S"},{"state":"neg","label":"O"},{"state":"neg","label":"N"},{"state":"neg","label":"D"},{"state":"neg","label":"J"},{"state":"pos","label":"F"},{"state":"neg","label":"M"}]}'></poster-chart>
+    <poster-chart type="donut" label="Arrears concentration" accent="#3E55C6" source="Table 5.10"
+      data='{"unit":"%","centerValue":69,"centerUnit":"%","centerLabel":"top 3 utilities","segments":[{"label":"KSRTC+KWA+KSEBL","value":69},{"label":"All others","value":31,"color":"#E3DAC6"}]}'></poster-chart>
+  </div>
+
+  <h2>dark theme (slate)</h2>
+  <div class="grid dark">
+    <poster-chart type="gauge" theme="slate" label="Committed exp" source="Table 1.1"
+      data='{"value":77.6,"unit":"%","label":"of revenue"}'></poster-chart>
+    <poster-chart type="slope" theme="slate" label="PSE accumulated loss" accent="#F87171" source="Table 5.7"
+      data='{"prefix":"₹","unit":" cr","fromLabel":"2021-22","toLabel":"2024-25","lines":[{"label":"All PSEs","from":42930,"to":72851}]}'></poster-chart>
+  </div>
+</body>
+</html>

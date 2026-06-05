@@ -1,0 +1,18 @@
+{
+  "name": "poster-charts",
+  "version": "0.0.1",
+  "description": "Bold data-poster SVG chart custom element. Eight infographic archetypes (stat, gauge, bars, slope, heatstrip, donut, stacked, capacity). Vanilla ES6, Shadow DOM, themable via CSS custom properties, animated, reduced-motion aware.",
+  "type": "module",
+  "main": "src/poster-charts.js",
+  "module": "src/poster-charts.js",
+  "files": ["src", "dist"],
+  "scripts": {
+    "build": "node build.js",
+    "serve": "python3 -m http.server 8091"
+  },
+  "keywords": ["charts", "svg", "infographic", "data-viz", "dashboard", "custom-element", "web-component"],
+  "license": "MIT",
+  "devDependencies": {
+    "terser": "^5.31.0"
+  }
+}
