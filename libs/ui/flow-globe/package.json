@@ -1,6 +1,6 @@
 {
   "name": "flow-globe",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Configurable animated geospatial flow map custom element. Lazy-loads amCharts, supports themed globe/map projections and custom Sankey flow data.",
   "type": "module",
   "main": "src/flow-globe.js",

@@ -4,7 +4,7 @@ Configurable animated geospatial flow map as a vanilla custom element. Adapted
 from amCharts' [Global Coffee Supply Chain](https://codepen.io/amcharts/pen/OPRwxBd)
 CodePen into a reusable `<flow-globe>` component.
 
-- Lazy-loads amCharts from `cdn.amcharts.com` by default; does **not** mirror it.
+- Lazy-loads amCharts as ESM from `unpkg.com` by default, with a fallback to `cdn.amcharts.com`; does **not** mirror it.
 - Ships a coffee-supply demo dataset but accepts custom Sankey flow data.
 - Globe or map projection, projection toggle, zoom controls, moving bullets.
 - Built-in `coffee`, `ocean`, `ember`, and `slate` themes plus CSS variables.
@@ -12,7 +12,7 @@ CodePen into a reusable `<flow-globe>` component.
 ## Use
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/gh/holmhq/cdn@main/libs/ui/flow-globe/v-0.0.1/flow-globe.min.mjs"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/holmhq/cdn@main/libs/ui/flow-globe/v-0.0.2/flow-globe.min.mjs"></script>
 
 <flow-globe theme="coffee" height="560"></flow-globe>
 ```
@@ -107,10 +107,11 @@ flow-globe.brand {
 
 ## Dependency note
 
-This component depends on amCharts 5 globals (`am5`, `am5map`,
-`am5geodata_worldLow`, `am5themes_Animated`). By default it loads them from
-amCharts' CDN. If your app has its own loading policy, include those scripts
-first and set `auto-load="false"`.
+This component depends on amCharts 5 (`am5`, `am5map`,
+`am5geodata_worldLow`, `am5themes_Animated`). By default it dynamically imports
+amCharts ESM from `unpkg.com` so it works under Holm's standard CSP. If your app
+has its own loading policy, expose compatible globals first and set
+`auto-load="false"`.
 
 ## Dev
 
@@ -124,6 +125,6 @@ python3 -m http.server 8090
 
 ```sh
 cd ~/Projects/holmhq/cdn
-scripts/publish.sh ui flow-globe 0.0.2
+scripts/publish.sh ui flow-globe 0.0.3
 git push
 ```
