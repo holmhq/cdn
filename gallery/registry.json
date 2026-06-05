@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-06-05T05:34:42.148Z",
+  "sourceRepo": "holmhq/cdn",
+  "components": [
+    {
+      "category": "ui",
+      "name": "feed-stars",
+      "slug": "feed-stars",
+      "tagName": "feed-stars",
+      "title": "Feed Stars",
+      "summary": "Animated 1–5 star rating control with playful per-star faces.",
+      "status": "stable",
+      "tags": [
+        "rating",
+        "stars",
+        "feedback",
+        "input",
+        "form"
+      ],
+      "latestVersion": "0.0.3",
+      "versionFolder": "v-0.0.3",
+      "releaseSha": "dc4f2fc748034f056000676f836c727abf47b438",
+      "libPath": "libs/ui/feed-stars",
+      "moduleFile": "feed-stars.min.mjs",
+      "moduleUrl": "https://cdn.jsdelivr.net/gh/holmhq/cdn@dc4f2fc748034f056000676f836c727abf47b438/libs/ui/feed-stars/v-0.0.3/feed-stars.min.mjs",
+      "specPath": "libs/ui/feed-stars/v-0.0.3/gallery.json",
+      "specUrl": "https://cdn.jsdelivr.net/gh/holmhq/cdn@dc4f2fc748034f056000676f836c727abf47b438/libs/ui/feed-stars/v-0.0.3/gallery.json",
+      "stories": [
+        {
+          "id": "empty",
+          "title": "Empty",
+          "summary": "Unset rating — all five stars await a selection.",
+          "html": "<feed-stars></feed-stars>",
+          "height": "120px"
+        },
+        {
+          "id": "preset",
+          "title": "Preset value",
+          "summary": "Pre-selected to four stars on load via the value attribute.",
+          "html": "<feed-stars value=\"4\"></feed-stars>",
+          "height": "120px"
+        },
+        {
+          "id": "disabled",
+          "title": "Disabled",
+          "summary": "Non-interactive and dimmed while still showing the current rating.",
+          "html": "<feed-stars value=\"3\" disabled></feed-stars>",
+          "height": "120px"
+        },
+        {
+          "id": "themed-amber",
+          "title": "Themed (amber on light)",
+          "summary": "Warm amber palette tuned for a light background via CSS custom properties.",
+          "html": "<feed-stars value=\"5\" style=\"--feed-stars-active:#f59e0b;--feed-stars-active-pale:rgba(245,158,11,0.36);--feed-stars-inactive:#e5e7eb;--feed-stars-face-active:#ffffff;--feed-stars-face-inactive:#fafafa;\"></feed-stars>",
+          "height": "120px",
+          "theme": "light"
+        }
+      ],
+      "snippets": [
+        {
+          "id": "change-listener",
+          "title": "Listen for rating changes",
+          "language": "js",
+          "storyId": "empty",
+          "code": "const stars = document.querySelector('feed-stars');\nstars.addEventListener('change', (e) => {\n  console.log('New rating:', e.detail.value); // 1–5, or 0 when cleared\n});"
+        }
+      ],
+      "docs": {
+        "attributes": [
+          {
+            "name": "value",
+            "type": "number",
+            "values": "1, 2, 3, 4, 5",
+            "default": "unset (0)",
+            "required": false,
+            "description": "Initial/current rating. Integers 1–5 select that many stars; any other value leaves the control unset.",
+            "example": "value=\"4\""
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "description": "When present, makes the control non-interactive and dims it.",
+            "example": "disabled"
+          }
+        ],
+        "events": [
+          {
+            "name": "change",
+            "detail": "{ value: number } — the new rating (0 when cleared)",
+            "bubbles": true,
+            "composed": true,
+            "when": "The user selects a new rating, or clears it by clicking the already-selected star.",
+            "description": "Notifies listeners of rating changes with the new numeric value."
+          }
+        ],
+        "cssProperties": [
+          {
+            "name": "--feed-stars-active",
+            "default": "#FFED76",
+            "description": "Fill color of selected/active stars."
+          },
+          {
+            "name": "--feed-stars-active-pale",
+            "default": "rgba(255, 237, 118, 0.36)",
+            "description": "Particle/dust color animated around active stars."
+          },
+          {
+            "name": "--feed-stars-inactive",
+            "default": "#121621",
+            "description": "Outline color of unselected stars."
+          },
+          {
+            "name": "--feed-stars-face-active",
+            "default": "#121621",
+            "description": "Facial-feature color on selected stars."
+          },
+          {
+            "name": "--feed-stars-face-inactive",
+            "default": "#1C212E",
+            "description": "Facial-feature color on unselected stars."
+          },
+          {
+            "name": "--feed-stars-gap",
+            "default": "16px",
+            "description": "Horizontal spacing between stars."
+          }
+        ],
+        "methods": [
+          {
+            "name": "reset",
+            "signature": "reset(): void",
+            "description": "Clears the rating back to unset (value = 0)."
+          }
+        ]
+      }
+    }
+  ]
+}
