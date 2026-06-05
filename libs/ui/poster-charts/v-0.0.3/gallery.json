@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "component": {
+    "category": "ui",
+    "name": "poster-charts",
+    "tagName": "poster-chart",
+    "title": "Poster Charts",
+    "summary": "Bold data-poster SVG charts — eight infographic archetypes for chart-first storytelling.",
+    "description": "A vanilla custom element for confident, editorial data graphics. Eight archetypes — stat, gauge, bars, slope, heatstrip, donut, stacked, capacity — render as bespoke inline SVG with oversized numerals, draw-in and count-up animation, and reduced-motion awareness. Data is supplied as a JSON object; presets and CSS custom properties handle theming. The directory is poster-charts but the element tag is poster-chart.",
+    "status": "stable",
+    "tags": ["charts", "data", "visualization", "infographic", "svg"]
+  },
+  "module": {
+    "file": "poster-charts.min.mjs",
+    "format": "esm",
+    "defines": ["poster-chart"],
+    "sideEffects": "custom-elements-define"
+  },
+  "stories": [
+    {
+      "id": "stat",
+      "title": "Stat with delta",
+      "summary": "Big-number callout with a directional delta pill.",
+      "html": "<poster-chart type=\"stat\" label=\"Inherited arrears\" accent=\"#E24536\" source=\"Table 2.7\" data='{\"prefix\":\"₹\",\"value\":48733,\"suffix\":\" cr\",\"sub\":\"Inherited arrears stock\",\"context\":\"as on 31 Mar 2026\",\"delta\":\"+12%\",\"deltaDir\":\"up\"}'></poster-chart>",
+      "height": "360px"
+    },
+    {
+      "id": "gauge",
+      "title": "Gauge",
+      "summary": "Single value rendered as an arc ring.",
+      "html": "<poster-chart type=\"gauge\" label=\"Own-tax realization\" accent=\"#0F5132\" source=\"Table 1.1\" data='{\"value\":92,\"max\":100,\"unit\":\"%\",\"label\":\"of target\",\"target\":100}'></poster-chart>",
+      "height": "360px"
+    },
+    {
+      "id": "bars",
+      "title": "Grouped bars",
+      "summary": "Paired vertical bars with a legend across two groups.",
+      "html": "<poster-chart type=\"bars\" label=\"Estimates keep missing\" accent=\"#F2A73B\" source=\"Table 3.1\" data='{\"unit\":\"%\",\"max\":4.4,\"legend\":[{\"label\":\"BE\"},{\"label\":\"Actual\"}],\"groups\":[{\"label\":\"Rev deficit\",\"bars\":[{\"label\":\"BE\",\"value\":1.90},{\"label\":\"Act\",\"value\":2.58}]},{\"label\":\"Fis deficit\",\"bars\":[{\"label\":\"BE\",\"value\":3.16},{\"label\":\"Act\",\"value\":3.78}]}]}'></poster-chart>",
+      "height": "380px"
+    },
+    {
+      "id": "slope",
+      "title": "Slope lines",
+      "summary": "Before/after slope lines across multiple series.",
+      "html": "<poster-chart type=\"slope\" label=\"What gets squeezed\" accent=\"#E24536\" source=\"Tables 6.2/6.3\" data='{\"unit\":\"%\",\"fromLabel\":\"2017-18\",\"toLabel\":\"2025-26\",\"lines\":[{\"label\":\"Plan share\",\"from\":23.18,\"to\":17.55},{\"label\":\"Social services\",\"from\":53.78,\"to\":30.68},{\"label\":\"SC/ST/OBC\",\"from\":9.24,\"to\":3.85}]}'></poster-chart>",
+      "height": "380px"
+    },
+    {
+      "id": "donut",
+      "title": "Donut with center stat",
+      "summary": "Share-of-whole donut with a center value and legend.",
+      "html": "<poster-chart type=\"donut\" label=\"Arrears concentration\" accent=\"#3E55C6\" source=\"Table 5.10\" data='{\"unit\":\"%\",\"centerValue\":69,\"centerUnit\":\"%\",\"centerLabel\":\"top 3 utilities\",\"segments\":[{\"label\":\"KSRTC+KWA+KSEBL\",\"value\":69},{\"label\":\"All others\",\"value\":31,\"color\":\"#E3DAC6\"}]}'></poster-chart>",
+      "height": "380px"
+    },
+    {
+      "id": "heatstrip",
+      "title": "Heatstrip",
+      "summary": "Twelve state-colored cells with a legend.",
+      "html": "<poster-chart type=\"heatstrip\" label=\"Treasury closed negative 10 of 12 months\" accent=\"#E24536\" source=\"Table 2.2\" data='{\"columns\":12,\"legend\":[{\"state\":\"neg\",\"label\":\"Negative close\",\"color\":\"#E24536\"},{\"state\":\"pos\",\"label\":\"Positive\",\"color\":\"#1FA463\"}],\"cells\":[{\"state\":\"neg\",\"label\":\"A\"},{\"state\":\"neg\",\"label\":\"M\"},{\"state\":\"neg\",\"label\":\"J\"},{\"state\":\"neg\",\"label\":\"J\"},{\"state\":\"pos\",\"label\":\"A\"},{\"state\":\"neg\",\"label\":\"S\"},{\"state\":\"neg\",\"label\":\"O\"},{\"state\":\"neg\",\"label\":\"N\"},{\"state\":\"neg\",\"label\":\"D\"},{\"state\":\"neg\",\"label\":\"J\"},{\"state\":\"pos\",\"label\":\"F\"},{\"state\":\"neg\",\"label\":\"M\"}]}'></poster-chart>",
+      "height": "360px"
+    },
+    {
+      "id": "dark-theme",
+      "title": "Slate (dark) theme",
+      "summary": "Gauge rendered with the dark slate palette.",
+      "html": "<poster-chart type=\"gauge\" theme=\"slate\" label=\"Committed exp\" source=\"Table 1.1\" data='{\"value\":77.6,\"unit\":\"%\",\"label\":\"of revenue\"}'></poster-chart>",
+      "height": "360px",
+      "theme": "dark"
+    },
+    {
+      "id": "bare",
+      "title": "Bare mode",
+      "summary": "Stacked composition without the plate frame or header strip.",
+      "html": "<poster-chart type=\"stacked\" bare label=\"₹100 of revenue\" data='{\"unit\":\"\",\"segments\":[{\"label\":\"Committed (non-interest)\",\"value\":56.7},{\"label\":\"Interest\",\"value\":20.9},{\"label\":\"Left for development\",\"value\":22.4,\"color\":\"#1FA463\"}]}'></poster-chart>",
+      "height": "240px"
+    }
+  ],
+  "snippets": [
+    {
+      "id": "set-data-property",
+      "title": "Set data via the property",
+      "language": "js",
+      "storyId": "stat",
+      "code": "const chart = document.querySelector('poster-chart');\nchart.data = { prefix: '₹', value: 48733, suffix: ' cr', delta: '+12%', deltaDir: 'up' };"
+    }
+  ],
+  "docs": {
+    "attributes": [
+      { "name": "type", "type": "string", "values": "stat, gauge, bars, slope, heatstrip, donut, stacked, capacity", "default": "stat", "required": false, "description": "Chart archetype to render." },
+      { "name": "theme", "type": "string", "values": "kerala, slate, ink", "default": "kerala", "required": false, "description": "Color palette preset — kerala (light), slate (dark), ink (monochrome)." },
+      { "name": "accent", "type": "string", "default": "from theme", "required": false, "description": "Override accent color for the header strip and default series fills." },
+      { "name": "label", "type": "string", "required": false, "description": "Header strip title (rendered uppercase)." },
+      { "name": "source", "type": "string", "required": false, "description": "Small source-attribution chip in the header strip." },
+      { "name": "caption", "type": "string", "required": false, "description": "Supporting text rendered below the chart." },
+      { "name": "data", "type": "json", "default": "{}", "required": false, "description": "Chart configuration and data; shape depends on type. Can also be set via the .data property." },
+      { "name": "bare", "type": "boolean", "default": "false", "required": false, "description": "Render without the plate frame and header strip." },
+      { "name": "animate", "type": "string", "values": "off", "default": "on", "required": false, "description": "Set to off to disable motion; otherwise respects prefers-reduced-motion." }
+    ],
+    "events": [],
+    "cssProperties": [
+      { "name": "--poster-ink", "default": "#15211B", "description": "Primary text color." },
+      { "name": "--poster-ink-soft", "default": "#5A6B61", "description": "Secondary/muted text color." },
+      { "name": "--poster-surface", "default": "#FFFFFF", "description": "Main background color." },
+      { "name": "--poster-surface-sunk", "default": "#F1EADA", "description": "Sunken background for legend and source chip." },
+      { "name": "--poster-line", "default": "#E3DAC6", "description": "Border and divider color." },
+      { "name": "--poster-good", "default": "#1FA463", "description": "Positive/success state color." },
+      { "name": "--poster-bad", "default": "#E24536", "description": "Negative/error state color." },
+      { "name": "--poster-warn", "default": "#F2A73B", "description": "Warning state color." },
+      { "name": "--poster-accent", "default": "#0F5132", "description": "Header strip accent and default fill color." },
+      { "name": "--poster-display-font", "default": "inherits --poster-font", "description": "Font family for the large numerals." }
+    ]
+  }
+}
