@@ -8,6 +8,7 @@ set -euo pipefail
 CATEGORY="${1:?category required (e.g. ui)}"
 NAME="${2:?lib name required}"
 VERSION="${3:?version required (e.g. 0.0.3)}"
+REPO_ROOT="$(git rev-parse --show-toplevel)"
 
 LIB_DIR="libs/$CATEGORY/$NAME"
 DEST="$LIB_DIR/v-$VERSION"
@@ -46,6 +47,13 @@ mkdir -p "v-$VERSION"
 cp dist/*.mjs "v-$VERSION/" 2>/dev/null || true
 cp dist/*.min.mjs "v-$VERSION/" 2>/dev/null || true
 
+if [[ ! -f gallery.json ]]; then
+  echo "error: missing $LIB_DIR/gallery.json (required for released spec snapshot)" >&2
+  rmdir "v-$VERSION" 2>/dev/null || true
+  exit 1
+fi
+cp gallery.json "v-$VERSION/gallery.json"
+
 if [[ -z "$(ls -A v-$VERSION/)" ]]; then
   echo "error: nothing copied into v-$VERSION/" >&2
   rmdir "v-$VERSION"
@@ -58,6 +66,11 @@ ln -s "v-$VERSION" v-latest
 cd - > /dev/null
 git add "$LIB_DIR/v-$VERSION" "$LIB_DIR/v-latest"
 git commit -m "$NAME: v$VERSION"
+
+cd "$REPO_ROOT"
+node scripts/generate-registry.mjs
+git add gallery/registry.json
+git commit -m "gallery: regenerate registry ($NAME v$VERSION)"
 
 echo
 echo "Published $NAME v$VERSION at $DEST"
