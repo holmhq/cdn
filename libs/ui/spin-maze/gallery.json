@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "component": {
+    "category": "ui",
+    "name": "spin-maze",
+    "tagName": "spin-maze",
+    "title": "Spin Maze",
+    "summary": "Rotating maze puzzle game as an iframe-isolated custom element.",
+    "description": "A self-contained rotating-maze puzzle packaged as a vanilla custom element. The game runs inside an isolated iframe with configurable levels, themes, a level picker, and persistent progress in localStorage. Emits a complete event when a level is solved. Themable via CSS custom properties.",
+    "status": "stable",
+    "tags": ["game", "puzzle", "maze", "interactive"]
+  },
+  "module": {
+    "file": "spin-maze.min.mjs",
+    "format": "esm",
+    "defines": ["spin-maze"],
+    "sideEffects": "custom-elements-define"
+  },
+  "stories": [
+    {
+      "id": "classic",
+      "title": "Classic",
+      "summary": "Default classic theme with the built-in level set.",
+      "html": "<spin-maze height=\"560px\"></spin-maze>",
+      "height": "600px"
+    },
+    {
+      "id": "night",
+      "title": "Night theme",
+      "summary": "Dark night palette.",
+      "html": "<spin-maze theme=\"night\" height=\"560px\"></spin-maze>",
+      "height": "600px",
+      "theme": "dark"
+    },
+    {
+      "id": "custom-levels",
+      "title": "Custom levels",
+      "summary": "Inject a custom level via the levels JSON attribute on the candy theme.",
+      "html": "<spin-maze theme=\"candy\" height=\"560px\" levels='[{\"id\":\"tiny\",\"blurb\":\"Demo\",\"instruction\":\"Drag the cub to the star\",\"map\":\"*=.=.\\n    !\\n. . .\\n    !\\n@=.=.\"}]'></spin-maze>",
+      "height": "600px"
+    },
+    {
+      "id": "no-picker",
+      "title": "Hidden level picker",
+      "summary": "Forest theme with the level picker button hidden.",
+      "html": "<spin-maze theme=\"forest\" height=\"560px\" show-levels=\"false\"></spin-maze>",
+      "height": "600px"
+    }
+  ],
+  "snippets": [
+    {
+      "id": "complete-listener",
+      "title": "React to level completion",
+      "language": "js",
+      "storyId": "classic",
+      "code": "const maze = document.querySelector('spin-maze');\nmaze.addEventListener('complete', (e) => {\n  console.log('Completed level:', e.detail.level);\n  console.log('All completed:', e.detail.completedLevels);\n});"
+    }
+  ],
+  "docs": {
+    "attributes": [
+      { "name": "height", "type": "string", "default": "720px", "required": false, "description": "Game/iframe height as any CSS length.", "example": "height=\"80vh\"" },
+      { "name": "theme", "type": "string", "values": "classic, night, candy, forest", "default": "classic", "required": false, "description": "Color theme palette." },
+      { "name": "level", "type": "string", "default": "first level", "required": false, "description": "Initial level id to load." },
+      { "name": "storage-key", "type": "string", "default": "spin-maze:{uid}", "required": false, "description": "localStorage namespace for current and completed levels." },
+      { "name": "show-levels", "type": "boolean", "values": "true, false", "default": "true", "required": false, "description": "Show or hide the level picker button." },
+      { "name": "button-label", "type": "string", "default": "Levels", "required": false, "description": "Level picker button text." },
+      { "name": "next-label", "type": "string", "default": "Next level", "required": false, "description": "Next-level button text." },
+      { "name": "levels", "type": "json", "default": "built-in set", "required": false, "description": "Custom level array of { id, blurb, instruction, map } objects." }
+    ],
+    "events": [
+      {
+        "name": "complete",
+        "detail": "{ level: string, completedLevels: string[] }",
+        "bubbles": true,
+        "composed": true,
+        "when": "The player reaches the goal/star position.",
+        "description": "Signals level completion with the current level id and all completed level ids."
+      }
+    ],
+    "cssProperties": [
+      { "name": "--spin-maze-height", "default": "720px", "description": "Game height." },
+      { "name": "--spin-maze-radius", "default": "18px", "description": "Wrapper border radius." },
+      { "name": "--spin-maze-shadow", "default": "0 18px 60px rgba(0,0,0,0.16)", "description": "Wrapper box shadow." },
+      { "name": "--spin-maze-background", "default": "#ffffff", "description": "Game page background." },
+      { "name": "--spin-maze-text", "default": "#555555", "description": "UI text color." },
+      { "name": "--spin-maze-button-bg", "default": "#bbbbbb", "description": "Button background." },
+      { "name": "--spin-maze-button-hover", "default": "#0099ff", "description": "Active/hover button background." },
+      { "name": "--spin-maze-cub", "default": "hsla(330, 100%, 40%, 1)", "description": "Player (cub) color." },
+      { "name": "--spin-maze-star", "default": "hsla(50, 100%, 50%, 1)", "description": "Goal/star color." },
+      { "name": "--spin-maze-free", "default": "hsla(200, 80%, 50%, 0.7)", "description": "Rotating/free maze segment color." },
+      { "name": "--spin-maze-fixed", "default": "hsla(30, 100%, 40%, 0.6)", "description": "Fixed maze segment color." }
+    ],
+    "methods": [
+      { "name": "configure", "signature": "configure(options?: object): SpinMaze", "description": "Apply options (theme, height, level, levels, labels, showLevels) programmatically; returns the element for chaining." },
+      { "name": "reload", "signature": "reload(): void", "description": "Rebuild the iframe game." }
+    ]
+  }
+}
