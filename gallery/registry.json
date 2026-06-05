@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-05T14:11:51.386Z",
+  "generatedAt": "2026-06-05T14:17:39.198Z",
   "sourceRepo": "holmhq/cdn",
   "components": [
     {
@@ -663,14 +663,14 @@
         "infographic",
         "svg"
       ],
-      "latestVersion": "0.0.3",
-      "versionFolder": "v-0.0.3",
-      "releaseSha": "69cc41662732ddd5efa9038462c2a1eafcfe4fcc",
+      "latestVersion": "0.0.4",
+      "versionFolder": "v-0.0.4",
+      "releaseSha": "cb97a86fb6c0bdc3e7b56684a913041246c7972e",
       "libPath": "libs/ui/poster-charts",
       "moduleFile": "poster-charts.min.mjs",
-      "moduleUrl": "https://cdn.jsdelivr.net/gh/holmhq/cdn@69cc41662732ddd5efa9038462c2a1eafcfe4fcc/libs/ui/poster-charts/v-0.0.3/poster-charts.min.mjs",
-      "specPath": "libs/ui/poster-charts/v-0.0.3/gallery.json",
-      "specUrl": "https://cdn.jsdelivr.net/gh/holmhq/cdn@69cc41662732ddd5efa9038462c2a1eafcfe4fcc/libs/ui/poster-charts/v-0.0.3/gallery.json",
+      "moduleUrl": "https://cdn.jsdelivr.net/gh/holmhq/cdn@cb97a86fb6c0bdc3e7b56684a913041246c7972e/libs/ui/poster-charts/v-0.0.4/poster-charts.min.mjs",
+      "specPath": "libs/ui/poster-charts/v-0.0.4/gallery.json",
+      "specUrl": "https://cdn.jsdelivr.net/gh/holmhq/cdn@cb97a86fb6c0bdc3e7b56684a913041246c7972e/libs/ui/poster-charts/v-0.0.4/gallery.json",
       "stories": [
         {
           "id": "stat",
