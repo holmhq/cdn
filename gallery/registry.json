@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-05T05:35:07.880Z",
+  "generatedAt": "2026-06-05T05:35:14.042Z",
   "sourceRepo": "holmhq/cdn",
   "components": [
     {
@@ -856,6 +856,269 @@
             "name": "--poster-display-font",
             "default": "inherits --poster-font",
             "description": "Font family for the large numerals."
+          }
+        ]
+      }
+    },
+    {
+      "category": "ui",
+      "name": "pulse-faces",
+      "slug": "pulse-faces",
+      "tagName": "pulse-faces",
+      "title": "Pulse Faces",
+      "summary": "Animated SVG sentiment faces with selection, labels, sizing, and theming.",
+      "status": "stable",
+      "tags": [
+        "sentiment",
+        "faces",
+        "feedback",
+        "rating",
+        "input",
+        "form"
+      ],
+      "latestVersion": "0.0.3",
+      "versionFolder": "v-0.0.3",
+      "releaseSha": "8b31b3b3e030dd0dbe642afcae8abbb1e26f5486",
+      "libPath": "libs/ui/pulse-faces",
+      "moduleFile": "pulse-faces.min.mjs",
+      "moduleUrl": "https://cdn.jsdelivr.net/gh/holmhq/cdn@8b31b3b3e030dd0dbe642afcae8abbb1e26f5486/libs/ui/pulse-faces/v-0.0.3/pulse-faces.min.mjs",
+      "specPath": "libs/ui/pulse-faces/v-0.0.3/gallery.json",
+      "specUrl": "https://cdn.jsdelivr.net/gh/holmhq/cdn@8b31b3b3e030dd0dbe642afcae8abbb1e26f5486/libs/ui/pulse-faces/v-0.0.3/gallery.json",
+      "stories": [
+        {
+          "id": "default",
+          "title": "Default display",
+          "summary": "The default four-face set rendered as a non-interactive display.",
+          "html": "<pulse-faces></pulse-faces>",
+          "height": "140px"
+        },
+        {
+          "id": "labels",
+          "title": "With labels",
+          "summary": "Faces with captions shown below, at a larger size.",
+          "html": "<pulse-faces labels size=\"80\"></pulse-faces>",
+          "height": "170px"
+        },
+        {
+          "id": "selectable",
+          "title": "Selectable picker",
+          "summary": "Clickable, keyboard-navigable picker with custom faces and a preselected value.",
+          "html": "<pulse-faces selectable labels value=\"fine\" faces=\"sad:1:Rough,neutral:2:Okay,fine:3:Fine,happy:4:Great\"></pulse-faces>",
+          "height": "170px"
+        },
+        {
+          "id": "vertical",
+          "title": "Vertical with custom colors",
+          "summary": "Vertical orientation, labels above, with overridden face colors.",
+          "html": "<pulse-faces selectable labels label-position=\"top\" orientation=\"vertical\" size=\"64px\" gap=\"12px\" style=\"--pulse-faces-happy:#34d399;--pulse-faces-sad:#fb7185;\"></pulse-faces>",
+          "height": "440px"
+        }
+      ],
+      "snippets": [
+        {
+          "id": "change-listener",
+          "title": "Read the selected face",
+          "language": "js",
+          "storyId": "selectable",
+          "code": "const faces = document.querySelector('pulse-faces[selectable]');\nfaces.addEventListener('change', (e) => {\n  console.log('Selected:', e.detail.value, e.detail.item);\n});"
+        },
+        {
+          "id": "form",
+          "title": "Required form field",
+          "language": "html",
+          "code": "<form>\n  <label>How are you feeling?</label>\n  <pulse-faces selectable labels name=\"feeling\" required></pulse-faces>\n  <button type=\"submit\">Submit</button>\n</form>"
+        }
+      ],
+      "docs": {
+        "attributes": [
+          {
+            "name": "faces",
+            "type": "json",
+            "default": "default 4-face set",
+            "required": false,
+            "description": "Faces to render. JSON array or CSV `face:value:label:color`. Faces: sad, neutral, fine, happy.",
+            "example": "faces=\"sad:1:Rough,happy:4:Great\""
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "description": "Selected value when selectable/interactive is set."
+          },
+          {
+            "name": "selectable",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "description": "Enable click and keyboard selection with input/change events."
+          },
+          {
+            "name": "interactive",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "description": "Alias for selectable."
+          },
+          {
+            "name": "labels",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "description": "Show caption text for each face."
+          },
+          {
+            "name": "label-position",
+            "type": "string",
+            "values": "bottom, top, none",
+            "default": "bottom",
+            "required": false,
+            "description": "Where captions appear relative to faces."
+          },
+          {
+            "name": "orientation",
+            "type": "string",
+            "values": "horizontal, vertical",
+            "default": "horizontal",
+            "required": false,
+            "description": "Layout direction of the faces."
+          },
+          {
+            "name": "size",
+            "type": "string",
+            "default": "72px",
+            "required": false,
+            "description": "Icon size per face; bare numbers are treated as pixels."
+          },
+          {
+            "name": "gap",
+            "type": "string",
+            "default": "16px",
+            "required": false,
+            "description": "Space between adjacent faces."
+          },
+          {
+            "name": "paused",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "description": "Freeze all face animations."
+          },
+          {
+            "name": "animated",
+            "type": "string",
+            "values": "false",
+            "default": "on",
+            "required": false,
+            "description": "Set to \"false\" to disable animations (alternative to paused)."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "description": "Disable interaction and dim the control."
+          },
+          {
+            "name": "required",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "description": "Mark as required for form validation."
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "default": "Emotion faces",
+            "required": false,
+            "description": "Form field name and accessible label."
+          }
+        ],
+        "events": [
+          {
+            "name": "input",
+            "detail": "{ value: string, index: number, item: object | null }",
+            "bubbles": true,
+            "composed": true,
+            "when": "On click or keyboard selection while selectable.",
+            "description": "Real-time user-selection feedback."
+          },
+          {
+            "name": "change",
+            "detail": "{ value: string, index: number, item: object | null }",
+            "bubbles": true,
+            "composed": true,
+            "when": "On click or completed keyboard selection while selectable.",
+            "description": "Selection confirmation. Fires only when the value actually changes."
+          }
+        ],
+        "cssProperties": [
+          {
+            "name": "--pulse-faces-size",
+            "default": "72px",
+            "description": "Icon size per face."
+          },
+          {
+            "name": "--pulse-faces-gap",
+            "default": "16px",
+            "description": "Space between faces."
+          },
+          {
+            "name": "--pulse-faces-ink",
+            "default": "#2C0E0F",
+            "description": "Color of eyes, mouth, and features."
+          },
+          {
+            "name": "--pulse-faces-sad",
+            "default": "#E23D18",
+            "description": "Sad face circle color."
+          },
+          {
+            "name": "--pulse-faces-neutral",
+            "default": "#F9AC1B",
+            "description": "Neutral face circle color."
+          },
+          {
+            "name": "--pulse-faces-fine",
+            "default": "#1988E3",
+            "description": "Fine face circle color."
+          },
+          {
+            "name": "--pulse-faces-happy",
+            "default": "#248C37",
+            "description": "Happy face circle color."
+          },
+          {
+            "name": "--pulse-faces-focus",
+            "default": "#8ab4ff",
+            "description": "Keyboard focus-ring color."
+          },
+          {
+            "name": "--pulse-faces-caption",
+            "default": "currentColor",
+            "description": "Label text color."
+          },
+          {
+            "name": "--pulse-faces-disabled-opacity",
+            "default": "0.55",
+            "description": "Opacity when disabled."
+          }
+        ],
+        "methods": [
+          {
+            "name": "select",
+            "signature": "select(valueOrIndex: string | number, options?: { emit?: boolean }): void",
+            "description": "Select a face by value or index; emit dispatches input/change."
+          },
+          {
+            "name": "reset",
+            "signature": "reset(options?: { emit?: boolean }): void",
+            "description": "Clear the current selection."
+          },
+          {
+            "name": "configure",
+            "signature": "configure(options: object): PulseFaces",
+            "description": "Apply options programmatically; returns the element for chaining."
           }
         ]
       }
