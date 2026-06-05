@@ -1,6 +1,6 @@
 {
   "name": "pulse-faces",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Animated SVG sentiment faces as a vanilla custom element. Configurable faces, selection mode, labels, sizing, and CSS-variable theming.",
   "type": "module",
   "main": "src/pulse-faces.js",
