@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "component": {
+    "category": "ui",
+    "name": "flow-globe",
+    "tagName": "flow-globe",
+    "title": "Flow Globe",
+    "summary": "Animated geospatial flows as glowing arcs on a rotating 3D globe or flat map.",
+    "description": "A dependency-free, first-party visualization of country-to-country flows. Renders great-circle arcs with travelling particles over a rotating wireframe globe or an equirectangular map. Drag to rotate, switch projections, and supply your own flow data and node roles. No third-party charting runtime.",
+    "status": "stable",
+    "tags": ["map", "globe", "geo", "visualization", "data", "flows"]
+  },
+  "module": {
+    "file": "flow-globe.min.mjs",
+    "format": "esm",
+    "defines": ["flow-globe"],
+    "sideEffects": "custom-elements-define"
+  },
+  "stories": [
+    {
+      "id": "ocean-globe",
+      "title": "Ocean globe",
+      "summary": "Default ocean theme with demo flows on a rotating globe.",
+      "html": "<flow-globe theme=\"ocean\" height=\"520px\"></flow-globe>",
+      "height": "560px"
+    },
+    {
+      "id": "custom-flows",
+      "title": "Custom flows with roles",
+      "summary": "Explicit source/hub/destination roles, custom flow data, and country names.",
+      "html": "<flow-globe\n  title=\"Design System Adoption\"\n  subtitle=\"Component imports by region\"\n  theme=\"ocean\"\n  producers=\"US,IN\"\n  hubs=\"DE,SG\"\n  consumers=\"GB,FR,JP,AU\"\n  data='[{\"sourceId\":\"US\",\"targetId\":\"DE\",\"value\":120},{\"sourceId\":\"IN\",\"targetId\":\"SG\",\"value\":90},{\"sourceId\":\"DE\",\"targetId\":\"GB\",\"value\":70},{\"sourceId\":\"SG\",\"targetId\":\"JP\",\"value\":50},{\"sourceId\":\"SG\",\"targetId\":\"AU\",\"value\":40}]'\n  country-names='{\"SG\":\"Singapore\",\"AU\":\"Australia\"}'\n></flow-globe>",
+      "height": "580px"
+    },
+    {
+      "id": "slate-map",
+      "title": "Slate map projection",
+      "summary": "Flat equirectangular map with the slate theme and legend.",
+      "html": "<flow-globe title=\"Global Supply Chain\" theme=\"slate\" projection=\"map\" height=\"420px\"></flow-globe>",
+      "height": "460px",
+      "theme": "dark"
+    },
+    {
+      "id": "coffee-static",
+      "title": "Coffee, no controls",
+      "summary": "Coffee theme with auto-rotate, controls, and legend all disabled.",
+      "html": "<flow-globe theme=\"coffee\" height=\"520px\" auto-rotate=\"false\" controls=\"false\" legend=\"false\"></flow-globe>",
+      "height": "560px"
+    },
+    {
+      "id": "ember-arc-override",
+      "title": "Ember with arc override",
+      "summary": "Compact ember globe with a custom arc color via CSS custom property.",
+      "html": "<flow-globe theme=\"ember\" height=\"300px\" style=\"--flow-globe-arc:#ff69b4;\"></flow-globe>",
+      "height": "340px"
+    }
+  ],
+  "snippets": [
+    {
+      "id": "set-data",
+      "title": "Replace flow data programmatically",
+      "language": "js",
+      "storyId": "custom-flows",
+      "code": "const globe = document.querySelector('flow-globe');\nglobe.setData([\n  { sourceId: 'US', targetId: 'DE', value: 120 },\n  { sourceId: 'DE', targetId: 'GB', value: 70 }\n]);"
+    }
+  ],
+  "docs": {
+    "attributes": [
+      { "name": "title", "type": "string", "required": false, "description": "Display title shown at the top of the globe.", "example": "title=\"Trade Flows\"" },
+      { "name": "subtitle", "type": "string", "required": false, "description": "Display subtitle shown below the title." },
+      { "name": "theme", "type": "string", "values": "ocean, coffee, ember, slate", "default": "ocean", "required": false, "description": "Color palette for the globe, arcs, and nodes." },
+      { "name": "height", "type": "string", "default": "520px", "required": false, "description": "Wrapper height as any CSS length.", "example": "height=\"70vh\"" },
+      { "name": "projection", "type": "string", "values": "globe, map", "default": "globe", "required": false, "description": "Render mode: orthographic globe or flat equirectangular map." },
+      { "name": "auto-rotate", "type": "boolean", "values": "true, false", "default": "true", "required": false, "description": "Continuous auto-rotation. Drag-to-rotate still works when false." },
+      { "name": "controls", "type": "boolean", "values": "true, false", "default": "true", "required": false, "description": "Show the Globe/Map toggle buttons." },
+      { "name": "legend", "type": "boolean", "values": "true, false", "default": "true", "required": false, "description": "Show the Source/Hub/Destination role legend." },
+      { "name": "data", "type": "json", "default": "built-in demo flows", "required": false, "description": "Flow array of { sourceId, targetId, value } using ISO-3166 alpha-2 country codes.", "example": "data='[{\"sourceId\":\"US\",\"targetId\":\"DE\",\"value\":120}]'" },
+      { "name": "country-names", "type": "json", "default": "{}", "required": false, "description": "Object mapping country IDs to custom display names." },
+      { "name": "producers", "type": "csv", "required": false, "description": "Country codes to color as source nodes.", "example": "producers=\"US,IN\"" },
+      { "name": "hubs", "type": "csv", "required": false, "description": "Country codes to color as intermediate/hub nodes." },
+      { "name": "consumers", "type": "csv", "required": false, "description": "Country codes to color as destination nodes." },
+      { "name": "value-suffix", "type": "string", "required": false, "description": "Suffix appended to flow values." }
+    ],
+    "events": [],
+    "cssProperties": [
+      { "name": "--flow-globe-height", "default": "520px", "description": "Wrapper height." },
+      { "name": "--flow-globe-radius", "default": "22px", "description": "Wrapper border radius." },
+      { "name": "--flow-globe-shadow", "default": "0 24px 70px rgba(0,0,0,0.28)", "description": "Wrapper box shadow." },
+      { "name": "--flow-globe-arc", "default": "theme-dependent", "description": "Flow arc line color." },
+      { "name": "--flow-globe-arc-hot", "default": "theme-dependent", "description": "Particle glow/shadow color." },
+      { "name": "--flow-globe-particle", "default": "theme-dependent", "description": "Travelling particle fill color." },
+      { "name": "--flow-globe-producer", "default": "theme-dependent", "description": "Source-country node color." },
+      { "name": "--flow-globe-hub", "default": "theme-dependent", "description": "Intermediate-country node color." },
+      { "name": "--flow-globe-consumer", "default": "theme-dependent", "description": "Destination-country node color." },
+      { "name": "--flow-globe-title", "default": "theme-dependent", "description": "Title text color." },
+      { "name": "--flow-globe-subtitle", "default": "theme-dependent", "description": "Subtitle text color." }
+    ],
+    "methods": [
+      { "name": "setData", "signature": "setData(flows: Array<{sourceId, targetId, value}>): void", "description": "Replace the flow data and re-render." },
+      { "name": "configure", "signature": "configure(options: object): FlowGlobe", "description": "Apply multiple options (attributes, data, countryNames) at once; returns the element for chaining." }
+    ]
+  }
+}
