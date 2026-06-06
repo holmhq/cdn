@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-06T16:11:52.481Z",
+  "generatedAt": "2026-06-06T17:29:22.148Z",
   "sourceRepo": "holmhq/cdn",
   "components": [
     {
@@ -144,7 +144,7 @@
       "tagName": "flow-globe",
       "title": "Flow Globe",
       "summary": "Animated geospatial flows as glowing arcs on a rotating 3D globe or flat map.",
-      "status": "stable",
+      "status": "experimental",
       "tags": [
         "map",
         "globe",
@@ -153,14 +153,14 @@
         "data",
         "flows"
       ],
-      "latestVersion": "0.1.1",
-      "versionFolder": "v-0.1.1",
-      "releaseSha": "097dfec5c7b50a4f98d75ecd151f78923a50f95f",
+      "latestVersion": "0.1.2",
+      "versionFolder": "v-0.1.2",
+      "releaseSha": "0245f01cd552fddf8ab31468a5fa62c6dbbdeb08",
       "libPath": "libs/ui/flow-globe",
       "moduleFile": "flow-globe.min.mjs",
-      "moduleUrl": "https://cdn.jsdelivr.net/gh/holmhq/cdn@097dfec5c7b50a4f98d75ecd151f78923a50f95f/libs/ui/flow-globe/v-0.1.1/flow-globe.min.mjs",
-      "specPath": "libs/ui/flow-globe/v-0.1.1/gallery.json",
-      "specUrl": "https://cdn.jsdelivr.net/gh/holmhq/cdn@097dfec5c7b50a4f98d75ecd151f78923a50f95f/libs/ui/flow-globe/v-0.1.1/gallery.json",
+      "moduleUrl": "https://cdn.jsdelivr.net/gh/holmhq/cdn@0245f01cd552fddf8ab31468a5fa62c6dbbdeb08/libs/ui/flow-globe/v-0.1.2/flow-globe.min.mjs",
+      "specPath": "libs/ui/flow-globe/v-0.1.2/gallery.json",
+      "specUrl": "https://cdn.jsdelivr.net/gh/holmhq/cdn@0245f01cd552fddf8ab31468a5fa62c6dbbdeb08/libs/ui/flow-globe/v-0.1.2/gallery.json",
       "stories": [
         {
           "id": "ocean-globe",
