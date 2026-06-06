@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "component": {
+    "category": "ui",
+    "name": "mood-reactions",
+    "tagName": "mood-reactions",
+    "title": "Mood Reactions",
+    "summary": "Animated 1–5 reaction picker with expressive faces, labels, and form participation.",
+    "description": "A vanilla custom element that renders a row of animated reaction faces — angry, sad, ok, good, happy — for collecting quick feedback. Supports custom items, labels, clearable selection, sizing, and full form participation with constraint validation. Shadow-DOM encapsulated and themable via CSS custom properties.",
+    "status": "experimental",
+    "tags": ["reactions", "feedback", "emoji", "rating", "input", "form"]
+  },
+  "module": {
+    "file": "mood-reactions.min.mjs",
+    "format": "esm",
+    "defines": ["mood-reactions"],
+    "sideEffects": "custom-elements-define"
+  },
+  "stories": [
+    {
+      "id": "default",
+      "title": "Default",
+      "summary": "The standard five-reaction picker with no labels.",
+      "html": "<mood-reactions></mood-reactions>",
+      "height": "120px"
+    },
+    {
+      "id": "labels",
+      "title": "With labels",
+      "summary": "Default reactions with captions shown below each face.",
+      "html": "<mood-reactions labels></mood-reactions>",
+      "height": "150px"
+    },
+    {
+      "id": "preselected-clearable",
+      "title": "Preselected & clearable",
+      "summary": "Starts on the fourth reaction; clicking it again clears the selection.",
+      "html": "<mood-reactions value=\"4\" labels clearable></mood-reactions>",
+      "height": "150px"
+    },
+    {
+      "id": "custom-items",
+      "title": "Custom items & colors",
+      "summary": "Three custom reactions, each with its own active color, via the items attribute.",
+      "html": "<mood-reactions labels items='[{\"face\":\"sad\",\"value\":\"bug\",\"label\":\"Bug\",\"active\":\"#fb7185\"},{\"face\":\"ok\",\"value\":\"meh\",\"label\":\"Meh\",\"active\":\"#facc15\"},{\"face\":\"happy\",\"value\":\"ship\",\"label\":\"Ship\",\"active\":\"#34d399\"}]'></mood-reactions>",
+      "height": "150px"
+    }
+  ],
+  "snippets": [
+    {
+      "id": "change-listener",
+      "title": "Read the selected reaction",
+      "language": "js",
+      "storyId": "labels",
+      "code": "const reactions = document.querySelector('mood-reactions');\nreactions.addEventListener('change', (e) => {\n  console.log('Selected:', e.detail.value, e.detail.item?.label);\n});"
+    },
+    {
+      "id": "form",
+      "title": "Use inside a form",
+      "language": "html",
+      "code": "<form>\n  <label>How was your experience?</label>\n  <mood-reactions name=\"experience\" required labels></mood-reactions>\n  <button type=\"submit\">Submit</button>\n</form>"
+    }
+  ],
+  "docs": {
+    "attributes": [
+      { "name": "value", "type": "string", "default": "\"\" (unset)", "required": false, "description": "Selected reaction value. Default reactions use values 1 through 5.", "example": "value=\"4\"" },
+      { "name": "items", "type": "json", "default": "default 5-item set", "required": false, "description": "Custom reaction list. JSON array of { face, value, label, ... } or CSV `face:value:label`. Faces: angry, sad, ok, good, happy." },
+      { "name": "clearable", "type": "boolean", "default": "false", "required": false, "description": "When set, clicking the current selection clears the value." },
+      { "name": "labels", "type": "boolean", "default": "false", "required": false, "description": "Show captions for each reaction." },
+      { "name": "label-position", "type": "string", "values": "bottom, top, none", "default": "bottom", "required": false, "description": "Where labels appear relative to the faces." },
+      { "name": "size", "type": "string", "default": "40", "required": false, "description": "Face size in pixels. Overridden by scale when both are present." },
+      { "name": "scale", "type": "number", "default": "1", "required": false, "description": "Scale multiplier for face size (0.4–4)." },
+      { "name": "gap", "type": "string", "default": "20px", "required": false, "description": "Space between reactions; bare numbers are treated as pixels." },
+      { "name": "legend", "type": "string", "default": "Feedback reaction", "required": false, "description": "Accessible label announced for the radiogroup." },
+      { "name": "name", "type": "string", "default": "auto-generated", "required": false, "description": "Form field name; enables form participation." },
+      { "name": "required", "type": "boolean", "default": "false", "required": false, "description": "Requires a selection before the form can submit." },
+      { "name": "disabled", "type": "boolean", "default": "false", "required": false, "description": "Disables interaction and dims the control." },
+      { "name": "readonly", "type": "boolean", "default": "false", "required": false, "description": "Prevents user selection but still submits with the form." }
+    ],
+    "events": [
+      {
+        "name": "input",
+        "detail": "{ value: string, index: number, item: object | null }",
+        "bubbles": true,
+        "composed": true,
+        "when": "On user selection or interactive change.",
+        "description": "Fires during interaction for real-time feedback."
+      },
+      {
+        "name": "change",
+        "detail": "{ value: string, index: number, item: object | null }",
+        "bubbles": true,
+        "composed": true,
+        "when": "On user selection or interactive change.",
+        "description": "Fires when the user completes a selection."
+      }
+    ],
+    "cssProperties": [
+      { "name": "--mood-reactions-normal", "default": "#414052", "description": "Face color when not selected." },
+      { "name": "--mood-reactions-active", "default": "#f8da69", "description": "Face color when selected." },
+      { "name": "--mood-reactions-active-mouth", "default": "#f05136", "description": "Mouth color on the selected face." },
+      { "name": "--mood-reactions-active-tear", "default": "#76b5e7", "description": "Tear-drop color on the selected sad face." },
+      { "name": "--mood-reactions-focus", "default": "#8ab4ff", "description": "Focus-ring outline color." },
+      { "name": "--mood-reactions-caption", "default": "currentColor", "description": "Label/caption text color." },
+      { "name": "--mood-reactions-caption-size", "default": "0.72rem", "description": "Label font size." },
+      { "name": "--mood-reactions-gap", "default": "20px", "description": "Space between reactions (set via the gap attribute)." },
+      { "name": "--mood-reactions-opacity-disabled", "default": "0.52", "description": "Opacity when disabled." }
+    ],
+    "methods": [
+      { "name": "select", "signature": "select(valueOrIndex: string | number, options?: { emit?: boolean }): void", "description": "Select a reaction by value or index; emit dispatches input/change." },
+      { "name": "reset", "signature": "reset(options?: { emit?: boolean }): void", "description": "Clear the current selection." },
+      { "name": "configure", "signature": "configure(options?: object): MoodReactions", "description": "Apply options programmatically; returns the element for chaining." }
+    ]
+  }
+}
