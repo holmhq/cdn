@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-06T17:29:23.059Z",
+  "generatedAt": "2026-06-06T17:29:24.009Z",
   "sourceRepo": "holmhq/cdn",
   "components": [
     {
@@ -839,7 +839,7 @@
       "tagName": "mood-reactions",
       "title": "Mood Reactions",
       "summary": "Animated 1–5 reaction picker with expressive faces, labels, and form participation.",
-      "status": "stable",
+      "status": "experimental",
       "tags": [
         "reactions",
         "feedback",
@@ -848,14 +848,14 @@
         "input",
         "form"
       ],
-      "latestVersion": "0.0.2",
-      "versionFolder": "v-0.0.2",
-      "releaseSha": "d03344e68c1b470dc9a01f483da09dadc8a7f97f",
+      "latestVersion": "0.0.3",
+      "versionFolder": "v-0.0.3",
+      "releaseSha": "e3adefc52555a2084259f7963a40f8b2952778c0",
       "libPath": "libs/ui/mood-reactions",
       "moduleFile": "mood-reactions.min.mjs",
-      "moduleUrl": "https://cdn.jsdelivr.net/gh/holmhq/cdn@d03344e68c1b470dc9a01f483da09dadc8a7f97f/libs/ui/mood-reactions/v-0.0.2/mood-reactions.min.mjs",
-      "specPath": "libs/ui/mood-reactions/v-0.0.2/gallery.json",
-      "specUrl": "https://cdn.jsdelivr.net/gh/holmhq/cdn@d03344e68c1b470dc9a01f483da09dadc8a7f97f/libs/ui/mood-reactions/v-0.0.2/gallery.json",
+      "moduleUrl": "https://cdn.jsdelivr.net/gh/holmhq/cdn@e3adefc52555a2084259f7963a40f8b2952778c0/libs/ui/mood-reactions/v-0.0.3/mood-reactions.min.mjs",
+      "specPath": "libs/ui/mood-reactions/v-0.0.3/gallery.json",
+      "specUrl": "https://cdn.jsdelivr.net/gh/holmhq/cdn@e3adefc52555a2084259f7963a40f8b2952778c0/libs/ui/mood-reactions/v-0.0.3/gallery.json",
       "stories": [
         {
           "id": "default",
@@ -884,13 +884,6 @@
           "summary": "Three custom reactions, each with its own active color, via the items attribute.",
           "html": "<mood-reactions labels items='[{\"face\":\"sad\",\"value\":\"bug\",\"label\":\"Bug\",\"active\":\"#fb7185\"},{\"face\":\"ok\",\"value\":\"meh\",\"label\":\"Meh\",\"active\":\"#facc15\"},{\"face\":\"happy\",\"value\":\"ship\",\"label\":\"Ship\",\"active\":\"#34d399\"}]'></mood-reactions>",
           "height": "150px"
-        },
-        {
-          "id": "vertical",
-          "title": "Vertical layout",
-          "summary": "Vertical orientation with labels above each face and custom sizing.",
-          "html": "<mood-reactions labels orientation=\"vertical\" label-position=\"top\" size=\"50\" gap=\"12\"></mood-reactions>",
-          "height": "420px"
         }
       ],
       "snippets": [
@@ -946,14 +939,6 @@
             "default": "bottom",
             "required": false,
             "description": "Where labels appear relative to the faces."
-          },
-          {
-            "name": "orientation",
-            "type": "string",
-            "values": "horizontal, vertical",
-            "default": "horizontal",
-            "required": false,
-            "description": "Layout direction of the reactions."
           },
           {
             "name": "size",
