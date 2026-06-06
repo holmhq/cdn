@@ -20,6 +20,8 @@ libs/
     ├── mood-reactions/       # animated reaction picker
     ├── pulse-faces/          # animated sentiment faces
     ├── flow-globe/           # geospatial flow map custom element
+    ├── poster-charts/        # editorial SVG infographic charts
+    ├── kerala-district-map/  # Kerala district choropleth/map custom element
     └── spin-maze/            # iframe-isolated rotating maze game
         ├── src/  build.js  package.json  README.md
         ├── v-0.0.1/  v-latest → v-0.0.1
