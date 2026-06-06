@@ -7,7 +7,7 @@
     "title": "Flow Globe",
     "summary": "Animated geospatial flows as glowing arcs on a rotating 3D globe or flat map.",
     "description": "A dependency-free, first-party visualization of country-to-country flows. Renders great-circle arcs with travelling particles over a rotating wireframe globe or an equirectangular map. Drag to rotate, switch projections, and supply your own flow data and node roles. No third-party charting runtime.",
-    "status": "stable",
+    "status": "experimental",
     "tags": ["map", "globe", "geo", "visualization", "data", "flows"]
   },
   "module": {
