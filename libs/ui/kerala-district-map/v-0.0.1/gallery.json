@@ -1,0 +1,451 @@
+{
+  "schemaVersion": 1,
+  "component": {
+    "category": "ui",
+    "name": "kerala-district-map",
+    "tagName": "kerala-district-map",
+    "title": "Kerala District Map",
+    "summary": "A data-driven SVG map of Kerala districts with choropleth fills, Malayalam labels, and selectable district events.",
+    "description": "A dependency-free custom element for flat Kerala district visualizations. Supply district-keyed values by id, slug, English name, or Malayalam name; render choropleths or categorical fills; localize labels to Malayalam; and style the map, labels, overlays, and details through CSS variables. Status is experimental until the SVG geometry receives final authoritative boundary review.",
+    "status": "experimental",
+    "tags": [
+      "kerala",
+      "map",
+      "districts",
+      "choropleth",
+      "visualization",
+      "svg",
+      "malayalam"
+    ]
+  },
+  "module": {
+    "file": "kerala-district-map.min.mjs",
+    "format": "esm",
+    "defines": [
+      "kerala-district-map"
+    ],
+    "sideEffects": "custom-elements-define"
+  },
+  "stories": [
+    {
+      "id": "malayalam-rainfall",
+      "title": "Malayalam rainfall",
+      "summary": "Malayalam labels, Baloo Chettan 2 opt-in, selected district, and an auto gradient legend.",
+      "html": "<kerala-district-map\n  locale=\"ml\"\n  labels=\"id\"\n  size=\"430\"\n  tint-color=\"#0ea5e9\"\n  heading=\"കേരള മഴ\"\n  subheading=\"സാമ്പിൾ മൺസൂൺ സൂചിക\"\n  legend=\"gradient\"\n  legend-title=\"മഴ\"\n  value-suffix=\" mm\"\n  selected-district=\"ernakulam\"\n  load-google-fonts\n  data='{\"kasaragod\":{\"value\":312,\"rank\":\"#8\",\"zone\":\"North\"},\"kannur\":{\"value\":348,\"rank\":\"#5\",\"zone\":\"North\"},\"wayanad\":{\"value\":414,\"rank\":\"#1\",\"zone\":\"High range\"},\"kozhikode\":{\"value\":362,\"rank\":\"#4\",\"zone\":\"North coast\"},\"malappuram\":{\"value\":331,\"rank\":\"#7\",\"zone\":\"Central\"},\"palakkad\":{\"value\":226,\"rank\":\"#14\",\"zone\":\"Gap\"},\"thrissur\":{\"value\":284,\"rank\":\"#11\",\"zone\":\"Central\"},\"ernakulam\":{\"value\":292,\"rank\":\"#10\",\"zone\":\"Metro\"},\"idukki\":{\"value\":405,\"rank\":\"#2\",\"zone\":\"High range\"},\"kottayam\":{\"value\":338,\"rank\":\"#6\",\"zone\":\"Midland\"},\"alappuzha\":{\"value\":276,\"rank\":\"#12\",\"zone\":\"Backwaters\"},\"pathanamthitta\":{\"value\":388,\"rank\":\"#3\",\"zone\":\"Forest edge\"},\"kollam\":{\"value\":302,\"rank\":\"#9\",\"zone\":\"South coast\"},\"thiruvananthapuram\":{\"value\":252,\"rank\":\"#13\",\"zone\":\"Capital\"}}'\n></kerala-district-map>",
+      "height": "820px",
+      "theme": "both"
+    },
+    {
+      "id": "english-adoption",
+      "title": "English adoption map",
+      "summary": "English district-name labels, fixed 0-100 domain, and a teal tint.",
+      "html": "<kerala-district-map\n  labels=\"name\"\n  size=\"440\"\n  tint-color=\"#14b8a6\"\n  heading=\"Kerala adoption\"\n  subheading=\"Demo district coverage\"\n  legend=\"gradient\"\n  legend-title=\"Adoption\"\n  value-suffix=\"%\"\n  domain-min=\"0\"\n  domain-max=\"100\"\n  selected-district=\"thiruvananthapuram\"\n  data='{\"kasaragod\":{\"value\":42,\"segment\":\"Priority\"},\"kannur\":{\"value\":51,\"segment\":\"Growth\"},\"wayanad\":{\"value\":63,\"segment\":\"Stable\"},\"kozhikode\":{\"value\":68,\"segment\":\"Priority\"},\"malappuram\":{\"value\":57,\"segment\":\"Growth\"},\"palakkad\":{\"value\":39,\"segment\":\"Stable\"},\"thrissur\":{\"value\":72,\"segment\":\"Priority\"},\"ernakulam\":{\"value\":86,\"segment\":\"Growth\"},\"idukki\":{\"value\":58,\"segment\":\"Stable\"},\"kottayam\":{\"value\":74,\"segment\":\"Priority\"},\"alappuzha\":{\"value\":66,\"segment\":\"Growth\"},\"pathanamthitta\":{\"value\":61,\"segment\":\"Stable\"},\"kollam\":{\"value\":69,\"segment\":\"Priority\"},\"thiruvananthapuram\":{\"value\":83,\"segment\":\"Growth\"}}'\n></kerala-district-map>",
+      "height": "840px",
+      "theme": "both"
+    },
+    {
+      "id": "matched-baloo-fonts",
+      "title": "Matched Baloo fonts",
+      "summary": "Use Baloo Chettan 2 for English/Latin and Malayalam text when a single visual voice is desired.",
+      "html": "<kerala-district-map\n  locale=\"ml\"\n  labels=\"name\"\n  size=\"440\"\n  tint-color=\"#f97316\"\n  heading=\"Kerala rainfall\"\n  subheading=\"English and മലയാളം share Baloo Chettan 2\"\n  legend=\"gradient\"\n  legend-title=\"Rainfall\"\n  value-suffix=\" mm\"\n  font-en=\"baloo-chettan-2\"\n  font-ml=\"baloo-chettan-2\"\n  load-google-fonts\n  data='{\"kasaragod\":{\"value\":312,\"rank\":\"#8\",\"zone\":\"North\"},\"kannur\":{\"value\":348,\"rank\":\"#5\",\"zone\":\"North\"},\"wayanad\":{\"value\":414,\"rank\":\"#1\",\"zone\":\"High range\"},\"kozhikode\":{\"value\":362,\"rank\":\"#4\",\"zone\":\"North coast\"},\"malappuram\":{\"value\":331,\"rank\":\"#7\",\"zone\":\"Central\"},\"palakkad\":{\"value\":226,\"rank\":\"#14\",\"zone\":\"Gap\"},\"thrissur\":{\"value\":284,\"rank\":\"#11\",\"zone\":\"Central\"},\"ernakulam\":{\"value\":292,\"rank\":\"#10\",\"zone\":\"Metro\"},\"idukki\":{\"value\":405,\"rank\":\"#2\",\"zone\":\"High range\"},\"kottayam\":{\"value\":338,\"rank\":\"#6\",\"zone\":\"Midland\"},\"alappuzha\":{\"value\":276,\"rank\":\"#12\",\"zone\":\"Backwaters\"},\"pathanamthitta\":{\"value\":388,\"rank\":\"#3\",\"zone\":\"Forest edge\"},\"kollam\":{\"value\":302,\"rank\":\"#9\",\"zone\":\"South coast\"},\"thiruvananthapuram\":{\"value\":252,\"rank\":\"#13\",\"zone\":\"Capital\"}}'\n></kerala-district-map>",
+      "height": "850px",
+      "theme": "both"
+    },
+    {
+      "id": "categorical-regions",
+      "title": "Categorical regions",
+      "summary": "Per-district color overrides with a slotted custom legend.",
+      "html": "<kerala-district-map\n  mode=\"dark\"\n  labels=\"id\"\n  size=\"430\"\n  tint-color=\"#a855f7\"\n  empty-color=\"#1f2937\"\n  heading=\"Kerala regions\"\n  subheading=\"Color overrides by region\"\n  legend=\"off\"\n  selected-district=\"idukki\"\n  data='{\"kasaragod\":{\"value\":1,\"region\":\"North\",\"color\":\"#38bdf8\"},\"kannur\":{\"value\":1,\"region\":\"North\",\"color\":\"#38bdf8\"},\"wayanad\":{\"value\":1,\"region\":\"North\",\"color\":\"#38bdf8\"},\"kozhikode\":{\"value\":1,\"region\":\"North\",\"color\":\"#38bdf8\"},\"malappuram\":{\"value\":1,\"region\":\"North\",\"color\":\"#38bdf8\"},\"palakkad\":{\"value\":2,\"region\":\"Central\",\"color\":\"#a78bfa\"},\"thrissur\":{\"value\":2,\"region\":\"Central\",\"color\":\"#a78bfa\"},\"ernakulam\":{\"value\":2,\"region\":\"Central\",\"color\":\"#a78bfa\"},\"idukki\":{\"value\":2,\"region\":\"Central\",\"color\":\"#a78bfa\"},\"kottayam\":{\"value\":3,\"region\":\"South\",\"color\":\"#fb7185\"},\"alappuzha\":{\"value\":3,\"region\":\"South\",\"color\":\"#fb7185\"},\"pathanamthitta\":{\"value\":3,\"region\":\"South\",\"color\":\"#fb7185\"},\"kollam\":{\"value\":3,\"region\":\"South\",\"color\":\"#fb7185\"},\"thiruvananthapuram\":{\"value\":3,\"region\":\"South\",\"color\":\"#fb7185\"}}'\n>\n  <div slot=\"legend\" class=\"region-legend\">\n    <strong>Region</strong>\n    <span><i style=\"background:#38bdf8\"></i>North</span>\n    <span><i style=\"background:#a78bfa\"></i>Central</span>\n    <span><i style=\"background:#fb7185\"></i>South</span>\n  </div>\n</kerala-district-map>",
+      "css": ".region-legend{display:grid;gap:6px;min-width:150px;color:inherit;font:inherit}.region-legend strong{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}.region-legend span{display:flex;align-items:center;gap:7px;font-size:.78rem;font-weight:750}.region-legend i{width:10px;height:10px;border-radius:999px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.18)}",
+      "height": "820px",
+      "theme": "dark"
+    }
+  ],
+  "snippets": [
+    {
+      "id": "set-data",
+      "title": "Set data programmatically",
+      "language": "js",
+      "storyId": "english-adoption",
+      "code": "const map = document.querySelector('kerala-district-map');\nmap.setData({\n  ernakulam: { value: 86, segment: 'Growth' },\n  thiruvananthapuram: { value: 83, segment: 'Capital' },\n  'ഇടുക്കി': { value: 58, segment: 'High range' }\n});",
+      "copyable": true
+    },
+    {
+      "id": "listen-selection",
+      "title": "Listen for district selection",
+      "language": "js",
+      "storyId": "malayalam-rainfall",
+      "code": "document.querySelector('kerala-district-map')\n  .addEventListener('district-select', (event) => {\n    const { slug, displayName, value, data } = event.detail;\n    console.log(slug, displayName, value, data);\n  });",
+      "copyable": true
+    },
+    {
+      "id": "frosted-surfaces",
+      "title": "Tune frosted overlay surfaces",
+      "language": "css",
+      "storyId": "malayalam-rainfall",
+      "code": "kerala-district-map {\n  --kerala-district-map-overlay-background: rgba(255,255,255,.72);\n  --kerala-district-map-overlay-backdrop-filter: blur(18px) saturate(1.35);\n  --kerala-district-map-popup-background: rgba(255,255,255,.82);\n  --kerala-district-map-popup-backdrop-filter: blur(18px) saturate(1.35);\n}",
+      "copyable": true
+    }
+  ],
+  "docs": {
+    "attributes": [
+      {
+        "name": "data",
+        "type": "json",
+        "default": "{}",
+        "required": false,
+        "description": "District-keyed data object. Keys can be id, slug, English district name, exact Malayalam name, or accepted alias.",
+        "example": "data='{\"ernakulam\":{\"value\":86}}'"
+      },
+      {
+        "name": "value-key",
+        "type": "string",
+        "default": "value",
+        "required": false,
+        "description": "Object field used as the numeric choropleth value."
+      },
+      {
+        "name": "domain-min",
+        "type": "number",
+        "default": "auto",
+        "required": false,
+        "description": "Minimum color-scale value. Omit for automatic domain."
+      },
+      {
+        "name": "domain-max",
+        "type": "number",
+        "default": "auto",
+        "required": false,
+        "description": "Maximum color-scale value. Omit for automatic domain."
+      },
+      {
+        "name": "value-label",
+        "type": "string",
+        "default": "Value",
+        "required": false,
+        "description": "Label used by default legend/details text."
+      },
+      {
+        "name": "value-suffix",
+        "type": "string",
+        "default": "",
+        "required": false,
+        "description": "Suffix appended to values in default details and legend labels.",
+        "example": "value-suffix=\" mm\""
+      },
+      {
+        "name": "mode",
+        "type": "string",
+        "values": "system, light, dark",
+        "default": "system",
+        "required": false,
+        "description": "Light/dark rendering mode. System follows prefers-color-scheme."
+      },
+      {
+        "name": "tint-color",
+        "type": "css-color",
+        "default": "#14b8a6",
+        "required": false,
+        "description": "Seed color used to derive choropleth stops and district strokes."
+      },
+      {
+        "name": "empty-color",
+        "type": "css-color",
+        "default": "#e5e7eb",
+        "required": false,
+        "description": "Fill for districts with missing or non-numeric values."
+      },
+      {
+        "name": "size",
+        "type": "number",
+        "default": "480",
+        "required": false,
+        "description": "Desired map width in pixels; the host still clamps to available width."
+      },
+      {
+        "name": "labels",
+        "type": "string",
+        "values": "off, id, name",
+        "default": "off",
+        "required": false,
+        "description": "SVG label mode. Name labels follow locale."
+      },
+      {
+        "name": "locale",
+        "type": "string",
+        "values": "en, ml",
+        "default": "en",
+        "required": false,
+        "description": "Display locale for names, ARIA labels, and default details. lang=\"ml\" also works."
+      },
+      {
+        "name": "font-en",
+        "type": "string",
+        "values": "inter, system, baloo-chettan-2, malayalam-system",
+        "default": "inter",
+        "required": false,
+        "description": "English/Latin/default font preset. Choose baloo-chettan-2 intentionally for a matched Malayalam look."
+      },
+      {
+        "name": "font-ml",
+        "type": "string",
+        "values": "baloo-chettan-2, system",
+        "default": "baloo-chettan-2",
+        "required": false,
+        "description": "Malayalam-script font preset."
+      },
+      {
+        "name": "load-google-fonts",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": "Explicitly load selected Google Fonts. Without it, fallback stacks are used."
+      },
+      {
+        "name": "selected-district",
+        "type": "string",
+        "default": "",
+        "required": false,
+        "description": "Select/highlight a district by id, slug, English name, alias, or exact Malayalam name."
+      },
+      {
+        "name": "hover-template",
+        "type": "trusted-html",
+        "default": "built-in template",
+        "required": false,
+        "description": "Trusted HTML template for tooltip/details. Placeholders include {id}, {code}, {name}, {displayName}, {nameEn}, {nameMl}, {slug}, {value}, {normalized}, {fields}, and data keys."
+      },
+      {
+        "name": "heading",
+        "type": "string",
+        "default": "",
+        "required": false,
+        "description": "Built-in header title. Header overlay is hidden when heading and subheading are empty."
+      },
+      {
+        "name": "subheading",
+        "type": "string",
+        "default": "",
+        "required": false,
+        "description": "Built-in header subtitle."
+      },
+      {
+        "name": "header-position",
+        "type": "string",
+        "values": "top-left, top-right, bottom-left, bottom-right",
+        "default": "top-right",
+        "required": false,
+        "description": "Position for built-in/slotted header overlay."
+      },
+      {
+        "name": "legend",
+        "type": "string|boolean",
+        "values": "off, gradient, true",
+        "default": "off",
+        "required": false,
+        "description": "Show or hide the auto gradient legend."
+      },
+      {
+        "name": "legend-title",
+        "type": "string",
+        "default": "value-label",
+        "required": false,
+        "description": "Auto legend title."
+      },
+      {
+        "name": "legend-position",
+        "type": "string",
+        "values": "top-left, top-right, bottom-left, bottom-right",
+        "default": "bottom-left",
+        "required": false,
+        "description": "Position for built-in/slotted legend overlay."
+      },
+      {
+        "name": "border-color",
+        "type": "css-color|auto",
+        "default": "auto",
+        "required": false,
+        "description": "Base district boundary color override."
+      },
+      {
+        "name": "hover-border-color",
+        "type": "css-color|auto",
+        "default": "auto",
+        "required": false,
+        "description": "Hover/focus boundary color override."
+      },
+      {
+        "name": "selected-border-color",
+        "type": "css-color|auto",
+        "default": "auto",
+        "required": false,
+        "description": "Selected district boundary color override."
+      }
+    ],
+    "events": [
+      {
+        "name": "district-hover",
+        "detail": "{ id, slug, name, displayName, nameEn, nameMl, district, value, data, normalized, source }",
+        "bubbles": true,
+        "composed": true,
+        "when": "Pointer enters a district on hover-capable devices.",
+        "description": "Signals that a district is being hovered and includes normalized district/data metadata."
+      },
+      {
+        "name": "district-leave",
+        "detail": "{ id, slug, name, displayName, nameEn, nameMl, district, value, data, normalized, source }",
+        "bubbles": true,
+        "composed": true,
+        "when": "Pointer leaves a district.",
+        "description": "Signals that district hover ended."
+      },
+      {
+        "name": "district-select",
+        "detail": "{ id, slug, name, displayName, nameEn, nameMl, district, value, data, normalized, source }",
+        "bubbles": true,
+        "composed": true,
+        "when": "User clicks, taps, presses Enter, or presses Space on a focused district.",
+        "description": "Signals selected district changes from user interaction."
+      }
+    ],
+    "cssProperties": [
+      {
+        "name": "--kerala-district-map-size",
+        "default": "480px",
+        "description": "Map width override."
+      },
+      {
+        "name": "--kerala-district-map-background",
+        "default": "transparent",
+        "description": "Component frame background."
+      },
+      {
+        "name": "--kerala-district-map-stroke",
+        "default": "tint/mode derived",
+        "description": "Base district boundary stroke."
+      },
+      {
+        "name": "--kerala-district-map-hover-stroke",
+        "default": "tint/mode derived",
+        "description": "Hover/focus boundary stroke."
+      },
+      {
+        "name": "--kerala-district-map-selected-stroke",
+        "default": "tint/mode derived",
+        "description": "Selected boundary stroke."
+      },
+      {
+        "name": "--kerala-district-map-empty-fill",
+        "default": "#e5e7eb",
+        "description": "Missing-data district fill."
+      },
+      {
+        "name": "--kerala-district-map-font-family",
+        "default": "unset",
+        "description": "Override all component text fonts."
+      },
+      {
+        "name": "--kerala-district-map-font-en-family",
+        "default": "Inter/system stack",
+        "description": "English/Latin/default font stack override."
+      },
+      {
+        "name": "--kerala-district-map-font-ml-family",
+        "default": "Baloo Chettan 2/Malayalam stack",
+        "description": "Malayalam-script font stack override."
+      },
+      {
+        "name": "--kerala-district-map-label-font",
+        "default": "active script font",
+        "description": "SVG label font override."
+      },
+      {
+        "name": "--kerala-district-map-label-color",
+        "default": "mode derived",
+        "description": "SVG label fill color."
+      },
+      {
+        "name": "--kerala-district-map-popup-background",
+        "default": "mode derived translucent",
+        "description": "Tooltip and mobile details background."
+      },
+      {
+        "name": "--kerala-district-map-popup-color",
+        "default": "mode derived",
+        "description": "Tooltip and mobile details text color."
+      },
+      {
+        "name": "--kerala-district-map-popup-backdrop-filter",
+        "default": "blur(18px) saturate(1.35)",
+        "description": "Tooltip and mobile details backdrop filter."
+      },
+      {
+        "name": "--kerala-district-map-overlay-background",
+        "default": "mode derived translucent",
+        "description": "Header/legend overlay background."
+      },
+      {
+        "name": "--kerala-district-map-overlay-backdrop-filter",
+        "default": "blur(18px) saturate(1.35)",
+        "description": "Header/legend overlay backdrop filter."
+      },
+      {
+        "name": "--kerala-district-map-overlay-shadow",
+        "default": "mode derived",
+        "description": "Header/legend overlay shadow."
+      },
+      {
+        "name": "--kerala-district-map-overlay-inset",
+        "default": "8px",
+        "description": "Inset for header/legend overlay positions."
+      },
+      {
+        "name": "--kerala-district-map-legend-height",
+        "default": "9px",
+        "description": "Auto legend gradient swatch height."
+      }
+    ],
+    "methods": [
+      {
+        "name": "setData",
+        "signature": "setData(valuesByDistrict: object): KeralaDistrictMap",
+        "description": "Replace district data and rerender."
+      },
+      {
+        "name": "setTintColor",
+        "signature": "setTintColor(color: string): KeralaDistrictMap",
+        "description": "Update the tint-color attribute and rerender."
+      },
+      {
+        "name": "setHoverTemplate",
+        "signature": "setHoverTemplate(html?: string): KeralaDistrictMap",
+        "description": "Set or clear the trusted hover/details template."
+      },
+      {
+        "name": "setLabels",
+        "signature": "setLabels(mode: \"off\"|\"id\"|\"name\"): KeralaDistrictMap",
+        "description": "Update SVG label mode."
+      },
+      {
+        "name": "getDistrict",
+        "signature": "getDistrict(idOrSlugOrName: string|number): District|null",
+        "description": "Return normalized district metadata."
+      },
+      {
+        "name": "getDistrictData",
+        "signature": "getDistrictData(idOrSlugOrName: string|number): object|null",
+        "description": "Return normalized data for a district."
+      },
+      {
+        "name": "highlightDistrict",
+        "signature": "highlightDistrict(idOrSlugOrName: string|number): KeralaDistrictMap",
+        "description": "Select and highlight a district."
+      },
+      {
+        "name": "clearSelection",
+        "signature": "clearSelection(): KeralaDistrictMap",
+        "description": "Clear the selected district and hide mobile details."
+      }
+    ]
+  }
+}
