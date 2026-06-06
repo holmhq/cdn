@@ -5,7 +5,7 @@
 // Converted to a dependency-free ES module + Shadow DOM web component with
 // configurable faces, selection mode, labels, sizing, and CSS-variable theming.
 
-export const VERSION = '0.0.2';
+export const VERSION = '0.0.4';
 
 export const FACE_KEYS = Object.freeze(['sad', 'neutral', 'fine', 'happy']);
 
@@ -32,6 +32,7 @@ const STYLES = `
   --pulse-faces-focus: #8ab4ff;
   --pulse-faces-selected-ring: currentColor;
   --pulse-faces-caption: currentColor;
+  --pulse-faces-caption-font: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --pulse-faces-caption-size: 0.75rem;
   --pulse-faces-caption-gap: 0.4rem;
   --pulse-faces-disabled-opacity: 0.55;
@@ -104,8 +105,9 @@ const STYLES = `
 .caption {
   color: var(--pulse-faces-caption);
   display: block;
-  font: inherit;
+  font-family: var(--pulse-faces-caption-font);
   font-size: var(--pulse-faces-caption-size);
+  font-weight: 500;
   line-height: 1;
   max-width: calc(var(--pulse-faces-size) * 1.5);
   overflow: hidden;
@@ -198,7 +200,7 @@ export class PulseFaces extends HTMLElement {
   static formAssociated = true;
 
   static get observedAttributes() {
-    return ['faces', 'value', 'name', 'size', 'gap', 'labels', 'label-position', 'orientation', 'interactive', 'selectable', 'disabled', 'required', 'paused', 'animated'];
+    return ['faces', 'face', 'color', 'value', 'name', 'size', 'gap', 'labels', 'label-position', 'orientation', 'interactive', 'selectable', 'disabled', 'required', 'paused', 'animated'];
   }
 
   constructor() {
@@ -215,7 +217,7 @@ export class PulseFaces extends HTMLElement {
   }
 
   connectedCallback() {
-    if (this.hasAttribute('faces')) this._faces = normalizeFaces(this.getAttribute('faces'));
+    this._syncFaces();
     if (this.hasAttribute('value')) this._value = this.getAttribute('value') || '';
     this._render();
   }
@@ -224,9 +226,22 @@ export class PulseFaces extends HTMLElement {
 
   attributeChangedCallback(name, oldValue, newValue) {
     if (oldValue === newValue) return;
-    if (name === 'faces') this._faces = normalizeFaces(newValue || DEFAULT_FACES);
+    if (name === 'faces' || name === 'face' || name === 'color') this._syncFaces();
     if (name === 'value') this._value = newValue || '';
     if (this.isConnected) this._render();
+  }
+
+  // Resolves the rendered face set from attributes. `faces` (a full set) wins;
+  // otherwise `face` displays a single face, optionally tinted via `color`;
+  // with neither, the default four-face set is shown.
+  _syncFaces() {
+    if (this.hasAttribute('faces')) {
+      this._faces = normalizeFaces(this.getAttribute('faces'));
+    } else if (this.hasAttribute('face')) {
+      this._faces = normalizeFaces([{ face: this.getAttribute('face'), color: this.getAttribute('color') || undefined }]);
+    } else {
+      this._faces = cloneDefaultFaces();
+    }
   }
 
   get value() { return this._value; }
@@ -398,7 +413,7 @@ function parseFacesAttribute(value) {
 
 function applyOptions(el, options) {
   if (options.faces) el.faces = options.faces;
-  for (const [key, attr] of Object.entries({ value: 'value', name: 'name', size: 'size', gap: 'gap', labelPosition: 'label-position', orientation: 'orientation' })) {
+  for (const [key, attr] of Object.entries({ face: 'face', color: 'color', value: 'value', name: 'name', size: 'size', gap: 'gap', labelPosition: 'label-position', orientation: 'orientation' })) {
     if (options[key] != null) el.setAttribute(attr, String(options[key]));
   }
   for (const [key, attr] of Object.entries({ labels: 'labels', interactive: 'interactive', selectable: 'selectable', disabled: 'disabled', required: 'required', paused: 'paused' })) {

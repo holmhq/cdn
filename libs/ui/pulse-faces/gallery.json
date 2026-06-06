@@ -6,8 +6,8 @@
     "tagName": "pulse-faces",
     "title": "Pulse Faces",
     "summary": "Animated SVG sentiment faces with selection, labels, sizing, and theming.",
-    "description": "A vanilla custom element rendering a configurable set of animated sentiment faces — sad, neutral, fine, happy. Use them as a static expression display or an interactive sentiment picker with keyboard support and form participation. Shadow-DOM encapsulated and fully themable via CSS custom properties.",
-    "status": "stable",
+    "description": "A vanilla custom element rendering a configurable set of animated sentiment faces — sad, neutral, fine, happy. Use them as a static expression display, a single accent face, or an interactive sentiment picker with keyboard support and form participation. Shadow-DOM encapsulated and fully themable via CSS custom properties.",
+    "status": "experimental",
     "tags": ["sentiment", "faces", "feedback", "rating", "input", "form"]
   },
   "module": {
@@ -23,6 +23,13 @@
       "summary": "The default four-face set rendered as a non-interactive display.",
       "html": "<pulse-faces></pulse-faces>",
       "height": "140px"
+    },
+    {
+      "id": "single-face",
+      "title": "Single face",
+      "summary": "Display one face on its own with the face attribute, tinted via a custom background color.",
+      "html": "<pulse-faces face=\"happy\" color=\"#a855f7\" size=\"96\"></pulse-faces>",
+      "height": "150px"
     },
     {
       "id": "labels",
@@ -64,6 +71,8 @@
   "docs": {
     "attributes": [
       { "name": "faces", "type": "json", "default": "default 4-face set", "required": false, "description": "Faces to render. JSON array or CSV `face:value:label:color`. Faces: sad, neutral, fine, happy.", "example": "faces=\"sad:1:Rough,happy:4:Great\"" },
+      { "name": "face", "type": "string", "values": "sad, neutral, fine, happy", "required": false, "description": "Display a single face. Shorthand for a one-item face set; ignored when faces is also set.", "example": "face=\"happy\"" },
+      { "name": "color", "type": "string", "required": false, "description": "Background (disc) color for the single face set via the face attribute.", "example": "color=\"#a855f7\"" },
       { "name": "value", "type": "string", "default": "\"\"", "required": false, "description": "Selected value when selectable/interactive is set." },
       { "name": "selectable", "type": "boolean", "default": "false", "required": false, "description": "Enable click and keyboard selection with input/change events." },
       { "name": "interactive", "type": "boolean", "default": "false", "required": false, "description": "Alias for selectable." },
@@ -106,6 +115,7 @@
       { "name": "--pulse-faces-happy", "default": "#248C37", "description": "Happy face circle color." },
       { "name": "--pulse-faces-focus", "default": "#8ab4ff", "description": "Keyboard focus-ring color." },
       { "name": "--pulse-faces-caption", "default": "currentColor", "description": "Label text color." },
+      { "name": "--pulse-faces-caption-font", "default": "Inter, sans-serif", "description": "Font family for caption labels." },
       { "name": "--pulse-faces-disabled-opacity", "default": "0.55", "description": "Opacity when disabled." }
     ],
     "methods": [
