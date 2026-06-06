@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-06T17:29:22.148Z",
+  "generatedAt": "2026-06-06T17:29:23.059Z",
   "sourceRepo": "holmhq/cdn",
   "components": [
     {
@@ -1315,7 +1315,7 @@
       "tagName": "pulse-faces",
       "title": "Pulse Faces",
       "summary": "Animated SVG sentiment faces with selection, labels, sizing, and theming.",
-      "status": "stable",
+      "status": "experimental",
       "tags": [
         "sentiment",
         "faces",
@@ -1324,14 +1324,14 @@
         "input",
         "form"
       ],
-      "latestVersion": "0.0.3",
-      "versionFolder": "v-0.0.3",
-      "releaseSha": "8b31b3b3e030dd0dbe642afcae8abbb1e26f5486",
+      "latestVersion": "0.0.4",
+      "versionFolder": "v-0.0.4",
+      "releaseSha": "eae0dfaae86fdc051a2fd886e01c45a9aa9550bd",
       "libPath": "libs/ui/pulse-faces",
       "moduleFile": "pulse-faces.min.mjs",
-      "moduleUrl": "https://cdn.jsdelivr.net/gh/holmhq/cdn@8b31b3b3e030dd0dbe642afcae8abbb1e26f5486/libs/ui/pulse-faces/v-0.0.3/pulse-faces.min.mjs",
-      "specPath": "libs/ui/pulse-faces/v-0.0.3/gallery.json",
-      "specUrl": "https://cdn.jsdelivr.net/gh/holmhq/cdn@8b31b3b3e030dd0dbe642afcae8abbb1e26f5486/libs/ui/pulse-faces/v-0.0.3/gallery.json",
+      "moduleUrl": "https://cdn.jsdelivr.net/gh/holmhq/cdn@eae0dfaae86fdc051a2fd886e01c45a9aa9550bd/libs/ui/pulse-faces/v-0.0.4/pulse-faces.min.mjs",
+      "specPath": "libs/ui/pulse-faces/v-0.0.4/gallery.json",
+      "specUrl": "https://cdn.jsdelivr.net/gh/holmhq/cdn@eae0dfaae86fdc051a2fd886e01c45a9aa9550bd/libs/ui/pulse-faces/v-0.0.4/gallery.json",
       "stories": [
         {
           "id": "default",
@@ -1339,6 +1339,13 @@
           "summary": "The default four-face set rendered as a non-interactive display.",
           "html": "<pulse-faces></pulse-faces>",
           "height": "140px"
+        },
+        {
+          "id": "single-face",
+          "title": "Single face",
+          "summary": "Display one face on its own with the face attribute, tinted via a custom background color.",
+          "html": "<pulse-faces face=\"happy\" color=\"#a855f7\" size=\"96\"></pulse-faces>",
+          "height": "150px"
         },
         {
           "id": "labels",
@@ -1386,6 +1393,21 @@
             "required": false,
             "description": "Faces to render. JSON array or CSV `face:value:label:color`. Faces: sad, neutral, fine, happy.",
             "example": "faces=\"sad:1:Rough,happy:4:Great\""
+          },
+          {
+            "name": "face",
+            "type": "string",
+            "values": "sad, neutral, fine, happy",
+            "required": false,
+            "description": "Display a single face. Shorthand for a one-item face set; ignored when faces is also set.",
+            "example": "face=\"happy\""
+          },
+          {
+            "name": "color",
+            "type": "string",
+            "required": false,
+            "description": "Background (disc) color for the single face set via the face attribute.",
+            "example": "color=\"#a855f7\""
           },
           {
             "name": "value",
@@ -1545,6 +1567,11 @@
             "name": "--pulse-faces-caption",
             "default": "currentColor",
             "description": "Label text color."
+          },
+          {
+            "name": "--pulse-faces-caption-font",
+            "default": "Inter, sans-serif",
+            "description": "Font family for caption labels."
           },
           {
             "name": "--pulse-faces-disabled-opacity",
