@@ -6,7 +6,7 @@
 // keyboard support, form participation, custom items, theming variables, and
 // programmatic helpers.
 
-export const VERSION = '0.0.1';
+export const VERSION = '0.0.3';
 
 export const FACE_KEYS = Object.freeze(['angry', 'sad', 'ok', 'good', 'happy']);
 
@@ -76,12 +76,6 @@ const STYLES = `
   gap: var(--mood-reactions-gap);
   margin: 0;
   padding: 0;
-}
-
-:host([orientation="vertical"]) .feedback,
-.feedback.vertical {
-  align-items: flex-start;
-  flex-direction: column;
 }
 
 .legend {
@@ -454,7 +448,6 @@ export class MoodReactions extends HTMLElement {
       'clearable',
       'labels',
       'label-position',
-      'orientation',
       'size',
       'scale',
       'gap',
@@ -684,7 +677,6 @@ function applyOptions(el, options) {
     name: 'name',
     legend: 'legend',
     labelPosition: 'label-position',
-    orientation: 'orientation',
     size: 'size',
     scale: 'scale',
     gap: 'gap',

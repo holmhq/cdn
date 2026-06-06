@@ -6,8 +6,8 @@
     "tagName": "mood-reactions",
     "title": "Mood Reactions",
     "summary": "Animated 1–5 reaction picker with expressive faces, labels, and form participation.",
-    "description": "A vanilla custom element that renders a row (or column) of animated reaction faces — angry, sad, ok, good, happy — for collecting quick feedback. Supports custom items, labels, clearable selection, sizing, and full form participation with constraint validation. Shadow-DOM encapsulated and themable via CSS custom properties.",
-    "status": "stable",
+    "description": "A vanilla custom element that renders a row of animated reaction faces — angry, sad, ok, good, happy — for collecting quick feedback. Supports custom items, labels, clearable selection, sizing, and full form participation with constraint validation. Shadow-DOM encapsulated and themable via CSS custom properties.",
+    "status": "experimental",
     "tags": ["reactions", "feedback", "emoji", "rating", "input", "form"]
   },
   "module": {
@@ -44,13 +44,6 @@
       "summary": "Three custom reactions, each with its own active color, via the items attribute.",
       "html": "<mood-reactions labels items='[{\"face\":\"sad\",\"value\":\"bug\",\"label\":\"Bug\",\"active\":\"#fb7185\"},{\"face\":\"ok\",\"value\":\"meh\",\"label\":\"Meh\",\"active\":\"#facc15\"},{\"face\":\"happy\",\"value\":\"ship\",\"label\":\"Ship\",\"active\":\"#34d399\"}]'></mood-reactions>",
       "height": "150px"
-    },
-    {
-      "id": "vertical",
-      "title": "Vertical layout",
-      "summary": "Vertical orientation with labels above each face and custom sizing.",
-      "html": "<mood-reactions labels orientation=\"vertical\" label-position=\"top\" size=\"50\" gap=\"12\"></mood-reactions>",
-      "height": "420px"
     }
   ],
   "snippets": [
@@ -75,7 +68,6 @@
       { "name": "clearable", "type": "boolean", "default": "false", "required": false, "description": "When set, clicking the current selection clears the value." },
       { "name": "labels", "type": "boolean", "default": "false", "required": false, "description": "Show captions for each reaction." },
       { "name": "label-position", "type": "string", "values": "bottom, top, none", "default": "bottom", "required": false, "description": "Where labels appear relative to the faces." },
-      { "name": "orientation", "type": "string", "values": "horizontal, vertical", "default": "horizontal", "required": false, "description": "Layout direction of the reactions." },
       { "name": "size", "type": "string", "default": "40", "required": false, "description": "Face size in pixels. Overridden by scale when both are present." },
       { "name": "scale", "type": "number", "default": "1", "required": false, "description": "Scale multiplier for face size (0.4–4)." },
       { "name": "gap", "type": "string", "default": "20px", "required": false, "description": "Space between reactions; bare numbers are treated as pixels." },
