@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-06T17:29:24.009Z",
+  "generatedAt": "2026-06-08T08:32:51.519Z",
   "sourceRepo": "holmhq/cdn",
   "components": [
     {
@@ -401,14 +401,14 @@
         "svg",
         "malayalam"
       ],
-      "latestVersion": "0.0.1",
-      "versionFolder": "v-0.0.1",
-      "releaseSha": "d5d060d9e9a86b0edbbcecc20e623e14d10aa526",
+      "latestVersion": "0.0.2",
+      "versionFolder": "v-0.0.2",
+      "releaseSha": "63606cb711d0e1697283c7f88db1cce736396c5f",
       "libPath": "libs/ui/kerala-district-map",
       "moduleFile": "kerala-district-map.min.mjs",
-      "moduleUrl": "https://cdn.jsdelivr.net/gh/holmhq/cdn@d5d060d9e9a86b0edbbcecc20e623e14d10aa526/libs/ui/kerala-district-map/v-0.0.1/kerala-district-map.min.mjs",
-      "specPath": "libs/ui/kerala-district-map/v-0.0.1/gallery.json",
-      "specUrl": "https://cdn.jsdelivr.net/gh/holmhq/cdn@d5d060d9e9a86b0edbbcecc20e623e14d10aa526/libs/ui/kerala-district-map/v-0.0.1/gallery.json",
+      "moduleUrl": "https://cdn.jsdelivr.net/gh/holmhq/cdn@63606cb711d0e1697283c7f88db1cce736396c5f/libs/ui/kerala-district-map/v-0.0.2/kerala-district-map.min.mjs",
+      "specPath": "libs/ui/kerala-district-map/v-0.0.2/gallery.json",
+      "specUrl": "https://cdn.jsdelivr.net/gh/holmhq/cdn@63606cb711d0e1697283c7f88db1cce736396c5f/libs/ui/kerala-district-map/v-0.0.2/gallery.json",
       "stories": [
         {
           "id": "malayalam-rainfall",
@@ -564,7 +564,7 @@
           {
             "name": "font-en",
             "type": "string",
-            "values": "inter, system, baloo-chettan-2, malayalam-system",
+            "values": "inter, system, baloo-chettan-2, noto-sans-malayalam, malayalam-system",
             "default": "inter",
             "required": false,
             "description": "English/Latin/default font preset. Choose baloo-chettan-2 intentionally for a matched Malayalam look."
@@ -572,10 +572,10 @@
           {
             "name": "font-ml",
             "type": "string",
-            "values": "baloo-chettan-2, system",
+            "values": "baloo-chettan-2, noto-sans-malayalam, system",
             "default": "baloo-chettan-2",
             "required": false,
-            "description": "Malayalam-script font preset."
+            "description": "Malayalam-script font preset. noto-sans-malayalam is the recommended, fully-shaped Malayalam typeface."
           },
           {
             "name": "load-google-fonts",
