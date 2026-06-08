@@ -181,7 +181,7 @@
       {
         "name": "font-en",
         "type": "string",
-        "values": "inter, system, baloo-chettan-2, malayalam-system",
+        "values": "inter, system, baloo-chettan-2, noto-sans-malayalam, malayalam-system",
         "default": "inter",
         "required": false,
         "description": "English/Latin/default font preset. Choose baloo-chettan-2 intentionally for a matched Malayalam look."
@@ -189,10 +189,10 @@
       {
         "name": "font-ml",
         "type": "string",
-        "values": "baloo-chettan-2, system",
+        "values": "baloo-chettan-2, noto-sans-malayalam, system",
         "default": "baloo-chettan-2",
         "required": false,
-        "description": "Malayalam-script font preset."
+        "description": "Malayalam-script font preset. noto-sans-malayalam is the recommended, fully-shaped Malayalam typeface."
       },
       {
         "name": "load-google-fonts",

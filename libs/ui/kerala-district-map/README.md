@@ -106,8 +106,8 @@ Values can be raw numbers or objects. The numeric field defaults to `value`; cha
 | `size` | number | `480` | Desired map width in px, clamped by the component. CSS max-width still applies. |
 | `labels` | enum | `off` | `off`, `id`, or `name`. Name labels follow `locale`. |
 | `locale` | enum | `en` | `en` or `ml`; `lang="ml"` also activates Malayalam display names. |
-| `font-en` | enum | `inter` | English/Latin/default text preset: `inter`, `system`, `baloo-chettan-2`, or `malayalam-system`. |
-| `font-ml` | enum | `baloo-chettan-2` | Malayalam text preset: `baloo-chettan-2` or `system`. |
+| `font-en` | enum | `inter` | English/Latin/default text preset: `inter`, `system`, `baloo-chettan-2`, `noto-sans-malayalam`, or `malayalam-system`. |
+| `font-ml` | enum | `baloo-chettan-2` | Malayalam text preset: `baloo-chettan-2`, `noto-sans-malayalam`, or `system`. |
 | `load-google-fonts` | boolean | off | Explicit opt-in to load selected Google Fonts. Without it, fallback stacks are used. |
 | `selected-district` | id/slug/name | empty | Select and highlight a district. Exact Malayalam names are accepted. |
 | `hover-template` | trusted HTML string | built-in | Template for tooltip/details content. Placeholders include `{id}`, `{code}`, `{name}`, `{displayName}`, `{nameEn}`, `{nameMl}`, `{slug}`, `{value}`, `{rawValue}`, `{normalized}`, `{fields}`, and data keys. |
@@ -126,7 +126,16 @@ The component is script-aware inside its Shadow DOM:
 
 - English/Latin/default text uses `font-en`.
 - Malayalam text detected in built-in content uses `font-ml`.
-- `Baloo Chettan 2` includes Latin glyphs. If you like the consistent look, intentionally set both font presets to Baloo:
+- `noto-sans-malayalam` is the recommended Malayalam preset: a robust, fully-shaped Malayalam typeface that renders conjuncts and stacked vowel signs cleanly. Pair it with a Latin `font-en` (e.g. `inter` or `baloo-chettan-2`):
+
+```html
+<kerala-district-map
+  font-en="inter"
+  font-ml="noto-sans-malayalam"
+></kerala-district-map>
+```
+
+- `Baloo Chettan 2` includes Latin glyphs. If you like the consistent rounded look across both scripts, intentionally set both font presets to Baloo:
 
 ```html
 <kerala-district-map

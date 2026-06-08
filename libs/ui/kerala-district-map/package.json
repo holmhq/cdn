@@ -1,6 +1,6 @@
 {
   "name": "kerala-district-map",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A dependency-free Kerala district map custom element with data-driven choropleth fills, Malayalam labels, keyboard selection, and gallery-ready overlays.",
   "type": "module",
   "main": "src/kerala-district-map.js",

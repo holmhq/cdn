@@ -24,6 +24,10 @@ const FONT_PRESETS = Object.freeze({
       googleFamily: "Baloo+Chettan+2:wght@400;500;600;700;800",
       stack: '"Baloo Chettan 2", "Noto Sans Malayalam", Manjari, Kartika, "Nirmala UI", system-ui, sans-serif'
     }),
+    "noto-sans-malayalam": Object.freeze({
+      googleFamily: "Noto+Sans+Malayalam:wght@400..700",
+      stack: '"Noto Sans Malayalam", Manjari, Kartika, "Nirmala UI", system-ui, sans-serif'
+    }),
     "malayalam-system": Object.freeze({
       googleFamily: "",
       stack: '"Noto Sans Malayalam", Manjari, Kartika, "Nirmala UI", system-ui, sans-serif'
@@ -37,6 +41,10 @@ const FONT_PRESETS = Object.freeze({
     "baloo-chettan-2": Object.freeze({
       googleFamily: "Baloo+Chettan+2:wght@400;500;600;700;800",
       stack: '"Baloo Chettan 2", "Noto Sans Malayalam", Manjari, Kartika, "Nirmala UI", system-ui, sans-serif'
+    }),
+    "noto-sans-malayalam": Object.freeze({
+      googleFamily: "Noto+Sans+Malayalam:wght@400..700",
+      stack: '"Noto Sans Malayalam", Manjari, Kartika, "Nirmala UI", system-ui, sans-serif'
     }),
     system: Object.freeze({
       googleFamily: "",
